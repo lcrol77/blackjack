@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddh2nkyecvd5o"]
+
+[ext_resource type="Texture2D" uid="uid://0sr3wnscjg5y" path="res://assets/Tilesheet/cardsLarge_tilemap.png" id="1_l0c1q"]
+
+[node name="Card" type="Sprite2D"]
+texture = ExtResource("1_l0c1q")
+region_enabled = true
+region_rect = Rect2(0, 0, 65, 65)
