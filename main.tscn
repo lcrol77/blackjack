@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=6 format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="Shader" uid="uid://d3glwnfoq2eil" path="res://noise_move.gdshader" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://ddh2nkyecvd5o" path="res://components/card.tscn" id="2_0xm2m"]
 
 [sub_resource type="Gradient" id="Gradient_ig7tw"]
 offsets = PackedFloat32Array(0.00819672, 1)
@@ -37,6 +36,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Card" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(825, 391)

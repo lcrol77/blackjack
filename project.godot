@@ -14,6 +14,10 @@ config/name="Blackjack"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://bwkurib3p7qxs"
 
+[autoload]
+
+Enums="*res://resources/globals/enums.gd"
+
 [display]
 
 window/size/viewport_width=1920
