@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ShoeResource" load_steps=2 format=3 uid="uid://sak3ibvh8kgb"]
+
+[ext_resource type="Script" uid="uid://bhlkyo6ifbm22" path="res://resources/shoe/shoe_resource.gd" id="1_g2jlf"]
+
+[resource]
+script = ExtResource("1_g2jlf")
+number_of_decks = 1

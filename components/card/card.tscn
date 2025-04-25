@@ -9,7 +9,3 @@ region_enabled = true
 region_rect = Rect2(0, 195, 65, 65)
 script = ExtResource("2_4pniv")
 suit = 3
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
-editor_draw_screen = false

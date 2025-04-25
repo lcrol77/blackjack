@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3of1dl62np5h"]
+
+[ext_resource type="Script" uid="uid://bu1ww2jhiyip8" path="res://components/dealer/dealer.gd" id="1_wgax2"]
+
+[node name="Dealer" type="Node2D"]
+script = ExtResource("1_wgax2")

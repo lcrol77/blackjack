@@ -2,16 +2,14 @@ class_name Deck
 extends Node
 
 @export var debugging: bool = false
-
-var deck_resource_preload := preload("res://resources/deck/deck_resource.gd")
+@export var shoe: ShoeResource
 const card_prefab: PackedScene = preload("res://components/card/card.tscn")
-var deck_resource: DeckResource
 
 
 func _ready() -> void:
-	deck_resource = deck_resource_preload.new()
+	shoe._init()
 	if get_tree().current_scene == self:
-		for card_res: CardResource in deck_resource.cards:
+		for card_res: CardResource in shoe.cards:
 			var card: Card = card_prefab.instantiate()
 			add_child(card)
 			card.card_resource = card_res

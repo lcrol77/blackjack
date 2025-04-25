@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=7 format=3 uid="uid://lkypvbkr0x5c"]
 
-[ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Shader" uid="uid://d3glwnfoq2eil" path="res://noise_move.gdshader" id="1_ig7tw"]
-[ext_resource type="Resource" uid="uid://sak3ibvh8kgb" path="res://resources/shoe/one_deck_shoe.tres" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cxjscef33dcy2" path="res://components/deck/deck.tscn" id="2_0xm2m"]
 
 [sub_resource type="Gradient" id="Gradient_ig7tw"]
 offsets = PackedFloat32Array(0.00819672, 1)
@@ -22,25 +21,21 @@ shader = ExtResource("1_ig7tw")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_h2yge")
 shader_parameter/dir = Vector2(0.5, 0.5)
 
-[node name="Main" type="Node2D"]
-
-[node name="Dealer" parent="." node_paths=PackedStringArray("deal_positions") instance=ExtResource("1_0xm2m")]
-shoe = ExtResource("2_h2yge")
-deal_positions = [NodePath("../DealerHand"), NodePath("../PlayerHand")]
-
-[node name="DealerHand" type="Node2D" parent="."]
-position = Vector2(962, 254)
-
-[node name="PlayerHand" type="Node2D" parent="."]
-position = Vector2(1015, 851)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="BG" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_0xm2m")
+[node name="Main" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0xm2m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
