@@ -22,25 +22,55 @@ shader = ExtResource("1_ig7tw")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_h2yge")
 shader_parameter/dir = Vector2(0.5, 0.5)
 
-[node name="Main" type="Node2D"]
-
-[node name="Dealer" parent="." node_paths=PackedStringArray("deal_positions") instance=ExtResource("1_0xm2m")]
-shoe = ExtResource("2_h2yge")
-deal_positions = [NodePath("../DealerHand"), NodePath("../PlayerHand")]
-
-[node name="DealerHand" type="Node2D" parent="."]
-position = Vector2(962, 254)
-
-[node name="PlayerHand" type="Node2D" parent="."]
-position = Vector2(1015, 851)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="BG" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_0xm2m")
+[node name="Main" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0xm2m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dealer" parent="." node_paths=PackedStringArray("deal_positions") instance=ExtResource("1_0xm2m")]
+shoe = ExtResource("2_h2yge")
+deal_positions = [NodePath("../DealerAnchor/DealerHand"), NodePath("../PlayerAnchor/PlayerHand")]
+
+[node name="DealerAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 79.0
+offset_bottom = 79.0
+grow_horizontal = 2
+
+[node name="DealerHand" type="Node2D" parent="DealerAnchor"]
+
+[node name="PlayerAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayerHand" type="Node2D" parent="PlayerAnchor"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1

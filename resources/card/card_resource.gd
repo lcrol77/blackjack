@@ -27,6 +27,7 @@ func _to_string() -> String:
 func get_card_name() -> String:
 	return get_rank_name(rank) + " of " + get_suit_name(suit)
 
+# TODO: fix this shit
 func get_suit_name(suit: Enums.Suit) -> String:
 	var suit_name: String
 	match suit:
