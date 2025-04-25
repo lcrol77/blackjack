@@ -4,3 +4,9 @@
 
 [node name="Deck" type="Node2D"]
 script = ExtResource("1_iw030")
+debugging = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)
+editor_draw_screen = false
