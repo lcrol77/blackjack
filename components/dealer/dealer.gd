@@ -11,7 +11,18 @@ var cards_to_deal: int
 func _ready() -> void:
 	shoe._init()
 	cards_to_deal = deal_positions.size() * 2
+	Signals.deal_new_hand.connect(_deal_hand)
+	Signals.clean_up_hand.connect(_clean_up_hand)
+
+func _deal_hand() -> void:
+	print("here")
 	deal()
+
+func _clean_up_hand() -> void:
+	for pos: Node2D in deal_positions:
+		for n in pos.get_children():
+			pos.remove_child(n)
+			n.queue_free()
 
 func deal() -> void:
 	var deal_index = 0

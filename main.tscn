@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=9 format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Shader" uid="uid://d3glwnfoq2eil" path="res://noise_move.gdshader" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Resource" uid="uid://sak3ibvh8kgb" path="res://resources/shoe/one_deck_shoe.tres" id="2_h2yge"]
 
 [sub_resource type="Gradient" id="Gradient_ig7tw"]
@@ -31,6 +32,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lquwl")
 
 [node name="BG" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0xm2m")
@@ -71,3 +73,26 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PlayerHand" type="Node2D" parent="PlayerAnchor"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "DEAL"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Clean up"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_deal_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_clean_up_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="VBoxContainer/Button2" method="_on_pressed"]

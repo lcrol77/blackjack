@@ -18,6 +18,7 @@ config/icon="uid://bwkurib3p7qxs"
 [autoload]
 
 Enums="*res://resources/globals/enums.gd"
+Signals="*res://globals/signals.gd"
 
 [display]
 
