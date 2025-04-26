@@ -6,16 +6,16 @@ const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 @export var shoe: ShoeResource
 @export var deal_positions: Array[Node2D] = []
 
-var card_to_deal: int 
+var cards_to_deal: int 
 
 func _ready() -> void:
 	shoe._init()
-	card_to_deal = deal_positions.size() * 2
+	cards_to_deal = deal_positions.size() * 2
 	deal()
 
 func deal() -> void:
 	var deal_index = 0
-	for i in range(card_to_deal):
+	for i in range(cards_to_deal):
 		var deal_pos: Node2D = deal_positions[deal_index % deal_positions.size()]
 		var card_res: CardResource = shoe.draw()
 		var new_card: Card = card_prefab.instantiate()
