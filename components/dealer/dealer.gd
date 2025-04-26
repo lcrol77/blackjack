@@ -22,4 +22,6 @@ func deal() -> void:
 		deal_pos.add_child(new_card)
 		new_card.card_resource = card_res
 		new_card.global_position = deal_pos.global_position + Vector2((65 * (i/deal_positions.size()))-32, 0)
+		if i == 0:
+			new_card.is_face_down = true
 		deal_index+=1

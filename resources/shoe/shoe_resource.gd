@@ -16,7 +16,7 @@ func _init() -> void:
 	for i in number_of_decks:
 		for suit in Enums.Suit:
 			for rank in Enums.Rank:
-				var card: CardResource = card_resource_preload.new(rank, suit)
+				var card: CardResource = card_resource_preload.new(rank, suit, false)
 				cards.append(card)
 	shuffle()
 

@@ -10,5 +10,4 @@ shoe = ExtResource("2_jcxnl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-zoom = Vector2(2, 2)
 editor_draw_screen = false
