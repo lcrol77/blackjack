@@ -22,12 +22,6 @@ func set_card_resource(value: CardResource) -> void:
 		return
 	if not is_node_ready():
 		await ready
-	if is_face_down:
-		card_front.visible = false
-		card_back.visible = true
-	else:
-		card_front.visible = true
-		card_back.visible = false
 	card_front.region_rect.position = Vector2(card_resource.skin_coordinates) * 65
 
 func set_is_face_down(val: bool):
