@@ -22,8 +22,11 @@ func _init() -> void:
 
 func shuffle() -> void:
 	# Empty current shoe
-	for card in cards_remaining:
-		print(card)
+	for i in range(cards_remaining.size()):
+		var card = cards_remaining.pop_front()
+		played_cards.append(card)
+	cards_remaining = played_cards
+	played_cards = []
 	cards_remaining.shuffle()
 
 func draw() -> CardResource:

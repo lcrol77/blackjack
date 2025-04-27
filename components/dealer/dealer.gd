@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _deal_hand() -> void:
 	if cards_to_deal > shoe.cards_remaining.size():
-		pass
+		shoe.shuffle()
 	deal()
 
 func _clean_up_hand() -> void:
