@@ -6,7 +6,7 @@ class_name ShoeResource
 # preloads
 const card_resource_preload = preload("res://resources/card/card_resource.gd")
 
-var cards: Array[CardResource] = []
+var cards_remaining: Array[CardResource] = []
 var played_cards: Array[CardResource] = []
 var count: int
 var normalized_count: float
@@ -17,14 +17,17 @@ func _init() -> void:
 		for suit in Enums.Suit:
 			for rank in Enums.Rank:
 				var card: CardResource = card_resource_preload.new(rank, suit, false)
-				cards.append(card)
+				cards_remaining.append(card)
 	shuffle()
 
 func shuffle() -> void:
-	cards.shuffle()
+	# Empty current shoe
+	for card in cards_remaining:
+		print(card)
+	cards_remaining.shuffle()
 
 func draw() -> CardResource:
-	var drawn_card: CardResource = cards.pop_front()
+	var drawn_card: CardResource = cards_remaining.pop_front()
 	played_cards.append(drawn_card)
 	update_count(drawn_card)
 	return drawn_card
@@ -34,4 +37,4 @@ func update_count(card: CardResource) -> void:
 		count +=1
 	elif card.value <= 6:
 		count -=1
-	normalized_count = (count as float) / ((cards.size() as float)/52.0)
+	normalized_count = (count as float) / ((cards_remaining.size() as float)/52.0)

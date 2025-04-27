@@ -9,7 +9,7 @@ const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 func _ready() -> void:
 	shoe._init()
 	if get_tree().current_scene == self:
-		for card_res: CardResource in shoe.cards:
+		for card_res: CardResource in shoe.cards_remaining:
 			var card: Card = card_prefab.instantiate()
 			add_child(card)
 			card.card_resource = card_res
