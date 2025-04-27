@@ -45,9 +45,10 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Dealer" parent="." node_paths=PackedStringArray("shoe_pos", "deal_positions") instance=ExtResource("1_0xm2m")]
+[node name="Dealer" parent="." node_paths=PackedStringArray("shoe_pos", "discard_pos", "deal_positions") instance=ExtResource("1_0xm2m")]
 shoe = ExtResource("2_h2yge")
 shoe_pos = NodePath("../ShoeAnchor/ShoePosition")
+discard_pos = NodePath("../DiscardAnchor/DiscardPosition")
 deal_positions = [NodePath("../DealerAnchor/DealerHand"), NodePath("../PlayerAnchor/PlayerHand")]
 
 [node name="DealerAnchor" type="Control" parent="."]
@@ -69,6 +70,12 @@ anchor_right = 1.0
 grow_horizontal = 0
 
 [node name="ShoePosition" type="Node2D" parent="ShoeAnchor"]
+
+[node name="DiscardAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="DiscardPosition" type="Node2D" parent="DiscardAnchor"]
 
 [node name="PlayerAnchor" type="Control" parent="."]
 layout_mode = 1

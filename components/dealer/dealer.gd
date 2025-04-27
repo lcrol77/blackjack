@@ -5,6 +5,7 @@ const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 
 @export var shoe: ShoeResource
 @export var shoe_pos: Node2D
+@export var discard_pos: Node2D
 @export var deal_positions: Array[Node2D] = []
 
 var cards_to_deal: int 
@@ -22,9 +23,12 @@ func _deal_hand() -> void:
 
 func _clean_up_hand() -> void:
 	for pos: Node2D in deal_positions:
-		for n in pos.get_children():
-			pos.remove_child(n)
-			n.queue_free()
+		for card in pos.get_children():
+			var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
+			tween.tween_property(card, "global_position", discard_pos.global_position, 0.2)
+			await  tween.finished
+			pos.remove_child(card)
+			card.queue_free()
 
 func deal() -> void:
 	var deal_index = 0
