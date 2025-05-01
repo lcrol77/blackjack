@@ -7,10 +7,13 @@ const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 @export var shoe_pos: Control
 @export var discard_pos: Control
 @export var deal_positions: Array[Control] = []
+@export var offset_amount = 32
 
+var current_player
 var cards_to_deal: int 
 
 func _ready() -> void:
+	assert(deal_positions.size() >= 2, "Need 2 or more deal_positions") # if there is less then two you don't have a game. Need a dealer + player
 	shoe._init()
 	cards_to_deal = deal_positions.size() * 2
 	Signals.deal_new_hand.connect(_deal_hand)
@@ -39,13 +42,17 @@ func deal() -> void:
 		var deal_pos: Control = deal_positions[deal_index % deal_positions.size()]
 		var card_res: CardResource = shoe.draw()
 		var new_card: Card = card_prefab.instantiate()
+		var target_position = deal_pos.global_position + get_offset(deal_pos)
 		deal_pos.add_child(new_card)
 		new_card.global_position = shoe_pos.global_position
 		new_card.card_resource = card_res
-		var target_position = deal_pos.global_position + Vector2((65 * (i/deal_positions.size()))-32, 0)
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 		tween.tween_property(new_card, "global_position", target_position, 0.55)
 		if i == 0:
 			new_card.is_face_down = true
 		deal_index+=1
 		await tween.finished
+
+func get_offset(deal_pos: Control) -> Vector2:
+	var num_children := deal_pos.get_child_count()
+	return Vector2(offset_amount*num_children, -offset_amount*num_children)

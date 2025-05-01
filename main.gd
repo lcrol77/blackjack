@@ -1,6 +1,4 @@
 extends Control
-
-var current_player: Node2D
 	
 func _on_deal_pressed() -> void:
 	Signals.deal_new_hand.emit()
