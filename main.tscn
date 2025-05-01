@@ -125,3 +125,5 @@ text = "STAND"
 
 [connection signal="pressed" from="VBoxContainer/Deal" to="." method="_on_deal_pressed"]
 [connection signal="pressed" from="VBoxContainer/CleanUp" to="." method="_on_clean_up_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Hit" to="Dealer" method="deal_card"]
+[connection signal="pressed" from="VBoxContainer2/Stand" to="Dealer" method="_on_stand_pressed"]
