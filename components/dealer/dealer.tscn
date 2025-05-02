@@ -4,3 +4,4 @@
 
 [node name="Dealer" type="Node"]
 script = ExtResource("1_wgax2")
+offset_amount = null

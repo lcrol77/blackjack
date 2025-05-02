@@ -1,8 +1,15 @@
 extends Control
-	
-func _on_deal_pressed() -> void:
-	Signals.deal_new_hand.emit()
 
+@onready var dealer: Dealer = $Dealer
+
+func _ready() -> void:
+	pass
+
+func start_turn() -> void:
+	dealer.deal()
+
+func _on_deal_pressed() -> void:
+	dealer.deal_hand()
 
 func _on_clean_up_pressed() -> void:
-	Signals.clean_up_hand.emit()
+	dealer.clean_up_hand()

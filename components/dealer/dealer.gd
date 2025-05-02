@@ -1,5 +1,5 @@
 class_name Dealer
-extends Node
+extends Player
 
 const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 
@@ -17,15 +17,13 @@ func _ready() -> void:
 	assert(deal_positions.size() >= 2, "Need 2 or more deal_positions") # if there is less then two you don't have a game. Need a dealer + player
 	shoe._init()
 	cards_to_deal = deal_positions.size() * 2
-	Signals.deal_new_hand.connect(_deal_hand)
-	Signals.clean_up_hand.connect(_clean_up_hand)
 
-func _deal_hand() -> void:
+func deal_hand() -> void:
 	if cards_to_deal > shoe.cards_remaining.size():
 		shoe.shuffle()
 	deal()
 
-func _clean_up_hand() -> void:
+func clean_up_hand() -> void:
 	for pos: Control in deal_positions:
 		for card in pos.get_children():
 			var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
