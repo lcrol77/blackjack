@@ -9,7 +9,16 @@ func _ready() -> void:
 
 func hit() -> void:
 	if hand.is_bust():
-		Signals.end_turn.emit()
+		_end_turn()
 
 func stand() -> void:
-	Signals.end_turn.emit()
+	_end_turn()
+ 
+func _end_turn() -> void:
+	if self.is_in_group("dealer"):
+		Signals.end_hand.emit()
+	else:
+		Signals.end_turn.emit()
+
+func clear_hand() -> void:
+	hand = hand_prefab.new()
