@@ -1,5 +1,5 @@
 class_name Hand
-extends Node
+extends Resource
 
 signal hand_changed
 
