@@ -7,7 +7,8 @@ var hand: Hand
 func _ready() -> void:
 	hand = hand_prefab.new()
 
-func hit() -> void:
+func hit(card: Card) -> void:
+	hand.add_card_to_hand(card.card_resource)
 	if hand.is_bust():
 		_end_turn()
 

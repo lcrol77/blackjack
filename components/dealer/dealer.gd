@@ -39,9 +39,7 @@ func clean_up_hand() -> void:
 func deal_card() -> void:
 	var card := _spawn_card(current_player)
 	var player: Player = players[current_player]
-	# TODO: Combine these methods; this is silly
-	player.hand.cards.append(card.card_resource)
-	player.hit()
+	player.hit(card)
 	
 func deal() -> void:
 	for i in range(cards_to_deal):
