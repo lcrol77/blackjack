@@ -6,7 +6,7 @@ const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 @export var shoe: ShoeResource
 @export var shoe_pos: Control
 @export var discard_pos: Control
-@export var deal_positions: Array[Control] = []
+@export var deal_positions: Array[Player] = []
 @export var offset_amount = 32
 
 var current_player: int = 1
@@ -43,7 +43,7 @@ func deal() -> void:
 			new_card.is_face_down = true
 		await tween.finished
 
-func get_offset(deal_pos: Control) -> Vector2:
+func get_card_offset(deal_pos: Player) -> Vector2:
 	var num_children := deal_pos.get_child_count()
 	return Vector2(offset_amount*num_children, -offset_amount*num_children)
 
@@ -51,7 +51,7 @@ func _spawn_card(deal_index: int) -> Card:
 	var deal_pos: Control = deal_positions[deal_index % deal_positions.size()]
 	var card_res: CardResource = shoe.draw()
 	var new_card: Card = card_prefab.instantiate()
-	var target_position = deal_pos.global_position + get_offset(deal_pos)
+	var target_position = deal_pos.global_position + get_card_offset(deal_pos)
 	deal_pos.add_child(new_card)
 	new_card.global_position = shoe_pos.global_position
 	new_card.card_resource = card_res
