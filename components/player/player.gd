@@ -3,13 +3,16 @@ extends Control
 
 var hand_prefab = preload("res://resources/hand.gd")
 var hand: Hand
+var has_bust: bool = false
+var bet: int
 
 func _ready() -> void:
-	hand = hand_prefab.new()
+	reset_player()
 
 func hit(card: Card) -> void:
 	hand.add_card_to_hand(card.card_resource)
 	if hand.is_bust():
+		has_bust = true
 		_end_turn()
 
 func stand() -> void:
@@ -21,5 +24,6 @@ func _end_turn() -> void:
 	else:
 		Signals.end_turn.emit()
 
-func clear_hand() -> void:
+func reset_player() -> void:
 	hand = hand_prefab.new()
+	has_bust = false

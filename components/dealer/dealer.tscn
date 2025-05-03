@@ -1,8 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3of1dl62np5h"]
+[gd_scene load_steps=5 format=3 uid="uid://d3of1dl62np5h"]
 
 [ext_resource type="Script" uid="uid://bu1ww2jhiyip8" path="res://components/dealer/dealer.gd" id="1_wgax2"]
+[ext_resource type="Script" uid="uid://b8sqhv3c5h4xe" path="res://game_states/game_state_machine.gd" id="2_0354n"]
+[ext_resource type="Script" uid="uid://b1o56f3fu2fml" path="res://game_states/dealing_state.gd" id="3_laxww"]
+[ext_resource type="Script" uid="uid://o3ddowa3m6lg" path="res://game_states/active_state.gd" id="4_laxww"]
 
-[node name="Dealer" type="Control"]
+[node name="Dealer" type="Control" node_paths=PackedStringArray("state_machine")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_wgax2")
+state_machine = NodePath("GameStateMachine")
+
+[node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_0354n")
+initial_state = NodePath("Dealing")
+
+[node name="Dealing" type="Node" parent="GameStateMachine"]
+script = ExtResource("3_laxww")
+
+[node name="Active" type="Node" parent="GameStateMachine"]
+script = ExtResource("4_laxww")
+
+[node name="CleanUp" type="Node" parent="GameStateMachine"]

@@ -9,10 +9,12 @@ const initial_player_idx: int = 1
 @export var discard_pos: Control
 @export var players: Array[Player] = []
 @export var offset_amount = 32
+@export var state_machine: StateMachine 
 
 var current_player: int = initial_player_idx
 var cards_to_deal: int
 var tween: Tween
+
 
 func _ready() -> void:
 	super._ready()
@@ -21,6 +23,7 @@ func _ready() -> void:
 	cards_to_deal = players.size() * 2
 	Signals.end_turn.connect(_progress_turn)
 	Signals.end_hand.connect(_end_hand)
+	state_machine.init(self)
 
 func deal_hand() -> void:
 	if cards_to_deal > shoe.cards_remaining.size():
@@ -40,7 +43,10 @@ func deal_card() -> void:
 	var card := _spawn_card(current_player)
 	var player: Player = players[current_player]
 	player.hit(card)
-	
+
+func on_hit() -> void:
+	state_machine.hit()
+
 func deal() -> void:
 	for i in range(cards_to_deal):
 		var normal_idx := _get_normalized_index(i)
@@ -58,7 +64,10 @@ func _get_normalized_index(deal_index: int) -> int:
 func get_card_offset(deal_pos: Player) -> Vector2:
 	var num_children := deal_pos.get_child_count()
 	return Vector2(offset_amount*num_children, -offset_amount*num_children)
-
+	
+func spawn_card()-> Card:
+	return _spawn_card(current_player)
+	
 func _spawn_card(deal_index: int) -> Card:
 	var deal_pos: Control = players[deal_index]
 	var card_res: CardResource = shoe.draw()
@@ -72,7 +81,7 @@ func _spawn_card(deal_index: int) -> Card:
 	return new_card
 	
 func _on_stand_pressed() -> void:
-	players[current_player].stand()
+	state_machine.stand()
 
 func _progress_turn() ->void:
 	if current_player == 0:
@@ -80,6 +89,7 @@ func _progress_turn() ->void:
 	current_player += 1
 	if current_player == players.size():
 		current_player = 0
+		state_machine.current_state.transition_requested.emit(state_machine.current_state, state_machine.current_state.State.DEALERTURN)
 
 # TODO: implement state change here
 func _end_hand() -> void:
