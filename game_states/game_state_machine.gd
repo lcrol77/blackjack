@@ -7,14 +7,15 @@ var current_state: GameState
 var states := {}
 
 func init(dealer: Dealer) -> void:
+	var children = get_children()
 	for child in get_children():
 		if child is GameState:
 			states[child.state] = child
 			child.transition_requested.connect(_on_transition_requested)
 			child.dealer = dealer
 	if initial_state:
-		initial_state.enter()
 		current_state = initial_state
+		initial_state.enter()
 
 func hit() -> void:
 	if current_state:

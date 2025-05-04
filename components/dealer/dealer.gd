@@ -56,7 +56,7 @@ func deal() -> void:
 		var new_card = _spawn_card(normal_idx)
 		if i == 0:
 			new_card.is_face_down = true
-		player.hand.cards.append(new_card.card_resource)
+		player.hit(new_card)
 		await tween.finished
 
 # returns the rolling index, support wrap around
@@ -104,5 +104,5 @@ func _end_hand() -> void:
 func _reset_hand() -> void:
 	clean_up_hand()
 	for player in players:
-		player.clear_hand()
+		player.reset_player()
 	current_player = initial_player_idx
