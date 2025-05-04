@@ -31,8 +31,10 @@ func deal_hand() -> void:
 	deal()
 
 func clean_up_hand() -> void:
-	for pos: Control in players:
+	for pos: Player in players:
 		for card in pos.get_children():
+			if card is not Card:
+				continue
 			var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 			tween.tween_property(card, "global_position", discard_pos.global_position, 0.2)
 			await  tween.finished
@@ -61,19 +63,23 @@ func deal() -> void:
 func _get_normalized_index(deal_index: int) -> int:
 	return deal_index % players.size()
 
-func get_card_offset(deal_pos: Player) -> Vector2:
-	var num_children := deal_pos.get_child_count()
-	return Vector2(offset_amount*num_children, -offset_amount*num_children)
+func get_card_offset(player: Player) -> Vector2:
+	var count: int = 0
+	for child in player.get_children():
+		if child is Card:
+			count += 1
+			
+	return Vector2(offset_amount*count, -offset_amount*count)
 	
 func spawn_card()-> Card:
 	return _spawn_card(current_player)
 	
 func _spawn_card(deal_index: int) -> Card:
-	var deal_pos: Control = players[deal_index]
+	var player: Player = players[deal_index]
 	var card_res: CardResource = shoe.draw()
 	var new_card: Card = card_prefab.instantiate()
-	var target_position = deal_pos.global_position + get_card_offset(deal_pos)
-	deal_pos.add_child(new_card)
+	var target_position = player.global_position + get_card_offset(player)
+	player.add_child(new_card)
 	new_card.global_position = shoe_pos.global_position
 	new_card.card_resource = card_res
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
