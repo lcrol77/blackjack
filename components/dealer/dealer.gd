@@ -22,15 +22,15 @@ func _ready() -> void:
 	shoe._init()
 	cards_to_deal = players.size() * 2
 	Signals.end_turn.connect(_progress_turn)
-	Signals.end_hand.connect(_end_hand)
 	state_machine.init(self)
 
 func deal_hand() -> void:
 	if cards_to_deal > shoe.cards_remaining.size():
 		shoe.shuffle()
-	deal()
+	await deal()
 
 func clean_up_hand() -> void:
+	print("clean_up_hand")
 	for pos: Player in players:
 		for card in pos.get_children():
 			if card is not Card:
@@ -99,10 +99,10 @@ func _progress_turn() ->void:
 
 # TODO: implement state change here
 func _end_hand() -> void:
-	_reset_hand()
+	await _reset_hand()
 
 func _reset_hand() -> void:
-	clean_up_hand()
+	await clean_up_hand()
 	for player in players:
 		player.reset_player()
 	current_player = initial_player_idx

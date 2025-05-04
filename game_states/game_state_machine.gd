@@ -26,6 +26,7 @@ func stand() -> void:
 
 
 func _on_transition_requested(from: GameState, to: GameState.State):
+	print("transitioning from ", from.state, " to ", to)
 	if from != current_state:
 		return
 	var new_state: GameState = states[to]
