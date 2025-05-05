@@ -1,28 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=7 format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
-[ext_resource type="Shader" uid="uid://d3glwnfoq2eil" path="res://noise_move.gdshader" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Resource" uid="uid://sak3ibvh8kgb" path="res://resources/shoe/one_deck_shoe.tres" id="2_h2yge"]
+[ext_resource type="Shader" uid="uid://buybyb4ch6x6y" path="res://balatro.gdshader" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://7p4yo8ess6ee" path="res://components/player/player.tscn" id="5_lquwl"]
 
-[sub_resource type="Gradient" id="Gradient_ig7tw"]
-offsets = PackedFloat32Array(0.00819672, 1)
-colors = PackedColorArray(0, 0.227451, 0.113725, 1, 0, 0.345098, 0.129412, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_0xm2m"]
-resource_local_to_scene = true
-noise_type = 3
-frequency = 0.015
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h2yge"]
-color_ramp = SubResource("Gradient_ig7tw")
-noise = SubResource("FastNoiseLite_0xm2m")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
-shader = ExtResource("1_ig7tw")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_h2yge")
-shader_parameter/dir = Vector2(0.5, 0.5)
+shader = ExtResource("2_lquwl")
+shader_parameter/spin_rotation_speed = 2.0
+shader_parameter/move_speed = 1.5
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0, 0.345098, 0.129412, 1)
+shader_parameter/colour_2 = Color(0, 0.345098, 0.129412, 1)
+shader_parameter/colour_3 = Color(0, 0.227451, 0.113725, 1)
+shader_parameter/contrast = 3.5
+shader_parameter/lighting = 0.4
+shader_parameter/spin_amount = 0.25
+shader_parameter/pixel_filter = 740.0
+shader_parameter/is_rotating = false
 
 [node name="Main" type="Control"]
 layout_mode = 3
