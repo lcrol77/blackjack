@@ -20,7 +20,7 @@ func _init(r: String, s: String, face_down: bool) -> void:
 	elif rank == Enums.Rank.ACE:
 		value = 11
 	else:
-		value = rank 
+		value = rank + 1 
 	skin_coordinates = Vector2i(rank, suit)
 	
 func _to_string() -> String:
