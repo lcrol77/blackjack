@@ -1,6 +1,7 @@
 class_name Player
 extends Control
 
+signal hand_changed
 var hand_prefab = preload("res://resources/hand.gd")
 var hand: Hand
 var has_bust: bool = false
@@ -11,6 +12,7 @@ func _ready() -> void:
 
 func hit(card: Card) -> void:
 	hand.add_card_to_hand(card.card_resource)
+	hand_changed.emit()
 	if hand.is_bust():
 		has_bust = true
 		_end_turn()
@@ -27,3 +29,4 @@ func _end_turn() -> void:
 func reset_player() -> void:
 	hand = hand_prefab.new()
 	has_bust = false
+	hand_changed.emit()

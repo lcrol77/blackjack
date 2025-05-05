@@ -1,8 +1,6 @@
 class_name Hand
 extends Resource
 
-signal hand_changed
-
 var cards: Array[CardResource] = []
 # NOTE: Implementation wise treat value as having 
 var value: int = 0
@@ -18,8 +16,7 @@ func add_card_to_hand(card_to_add: CardResource) -> void:
 	else:
 		alt_value += card_to_add.value
 	value += card_to_add.value
-	hand_changed.emit()
-
+	
 func is_bust() -> bool:
 	var comparator = value
 	if has_ace_in_hand:
