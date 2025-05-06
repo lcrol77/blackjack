@@ -25,8 +25,6 @@ func stand() -> void:
 	if current_state:
 		current_state.stand()
 
-
-
 func _on_transition_requested(from: GameState, to: GameState.State):
 	print("transitioning from ", GameState.State.keys()[from.state], " to ", GameState.State.keys()[to])
 	if from != current_state:

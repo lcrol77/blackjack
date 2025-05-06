@@ -1,6 +1,9 @@
 class_name Dealer
 extends Player
 
+#FIXME: should remove this when I get the current_player and turn items out of the dealer component
+signal transition_to_dealer_turn
+
 const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 const initial_player_idx: int = 1
 
@@ -9,12 +12,10 @@ const initial_player_idx: int = 1
 @export var discard_pos: Control
 @export var players: Array[Player] = []
 @export var offset_amount = 32
-@export var state_machine: StateMachine 
 
 var current_player: int = initial_player_idx
 var cards_to_deal: int
 var tween: Tween
-
 
 func _ready() -> void:
 	super._ready()
@@ -22,7 +23,6 @@ func _ready() -> void:
 	shoe._init()
 	cards_to_deal = players.size() * 2
 	Signals.end_turn.connect(_progress_turn)
-	state_machine.init(self)
 
 func deal_hand() -> void:
 	if cards_to_deal > shoe.cards_remaining.size():
@@ -30,7 +30,6 @@ func deal_hand() -> void:
 	await deal()
 
 func clean_up_hand() -> void:
-	print("clean_up_hand")
 	for pos: Player in players:
 		for card in pos.get_children():
 			if card is not Card:
@@ -45,12 +44,6 @@ func deal_card() -> void:
 	var card := _spawn_card(current_player)
 	var player: Player = players[current_player]
 	player.hit(card)
-
-func on_hit() -> void:
-	state_machine.hit()
-
-func _on_stand_pressed() -> void:
-	state_machine.stand()
 
 func deal() -> void:
 	for i in range(cards_to_deal):
@@ -74,7 +67,7 @@ func get_card_offset(player: Player) -> Vector2:
 			
 	return Vector2(offset_amount*count, -offset_amount*count)
 	
-func spawn_card()-> Card:
+func spawn_card() -> Card:
 	return _spawn_card(current_player)
 	
 func _spawn_card(deal_index: int) -> Card:
@@ -89,14 +82,14 @@ func _spawn_card(deal_index: int) -> Card:
 	tween.tween_property(new_card, "global_position", target_position, 0.55)
 	return new_card
 
-
+# TODO: migrate below out of dealer script
 func _progress_turn() ->void:
 	if current_player == 0:
 		return
 	current_player += 1
 	if current_player == players.size():
 		current_player = 0
-		state_machine.current_state.transition_requested.emit(state_machine.current_state, state_machine.current_state.State.DEALERTURN)
+		transition_to_dealer_turn.emit()
 
 # TODO: implement state change here
 func _end_hand() -> void:
