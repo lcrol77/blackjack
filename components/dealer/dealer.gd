@@ -49,6 +49,9 @@ func deal_card() -> void:
 func on_hit() -> void:
 	state_machine.hit()
 
+func _on_stand_pressed() -> void:
+	state_machine.stand()
+
 func deal() -> void:
 	for i in range(cards_to_deal):
 		var normal_idx := _get_normalized_index(i)
@@ -85,9 +88,7 @@ func _spawn_card(deal_index: int) -> Card:
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 	tween.tween_property(new_card, "global_position", target_position, 0.55)
 	return new_card
-	
-func _on_stand_pressed() -> void:
-	state_machine.stand()
+
 
 func _progress_turn() ->void:
 	if current_player == 0:

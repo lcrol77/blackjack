@@ -22,7 +22,9 @@ func hit() -> void:
 		current_state.hit()
 
 func stand() -> void:
-	pass
+	if current_state:
+		current_state.stand()
+
 
 
 func _on_transition_requested(from: GameState, to: GameState.State):
