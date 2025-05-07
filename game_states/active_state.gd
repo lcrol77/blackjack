@@ -6,7 +6,7 @@ func enter() -> void:
 	current_player = players[initial_index]
 	
 func hit()-> void:
-	var is_bust = dealer.deal_card(current_player)
+	var is_bust = await dealer.deal_card(current_player)
 	if is_bust:
 		_progress_turn()
 

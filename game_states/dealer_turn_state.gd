@@ -4,11 +4,19 @@ func enter() -> void:
 	current_player = dealer
 	_reveal()
 	await get_tree().create_timer(2).timeout
-	hit()
-	transition_requested.emit(self, State.CLEANUP)
+	await take_turn()
 
-func hit()-> void:
-	dealer.deal_card(current_player)
+func hit() -> void:
+	await dealer.deal_card(current_player)
+
+func take_turn() -> void:
+	while current_player.hand.value < 17:
+		await hit()
+		if current_player.has_bust:
+			transition_requested.emit(self, State.CLEANUP)
+			return
+	current_player.stand()
+	transition_requested.emit(self, State.CLEANUP)
 
 func _reveal() -> void:
 	# TODO: add animations for this?
