@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qo0i7nk8hy51" path="res://components/player/player.gd" id="1_t3162"]
 
-[node name="Player" type="Control"]
+[node name="Player" type="Control" groups=["players"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

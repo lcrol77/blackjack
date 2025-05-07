@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bu1ww2jhiyip8" path="res://components/dealer/dealer.gd" id="1_wgax2"]
 
-[node name="Dealer" type="Control"]
+[node name="Dealer" type="Control" groups=["players"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_wgax2")

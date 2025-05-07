@@ -12,6 +12,8 @@ enum State {
 signal transition_requested(from: GameState, to: State)
 @export var state: State
 var dealer: Dealer
+var players: Array[Player]
+var current_player: Player
 
 func enter() -> void:
 	pass
@@ -23,4 +25,7 @@ func hit() -> void:
 	pass
 
 func stand() -> void:
+	pass
+
+func progress_turn() -> void:
 	pass

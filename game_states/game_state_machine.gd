@@ -6,13 +6,14 @@ extends Node
 var current_state: GameState
 var states := {}
 
-func init(dealer: Dealer) -> void:
+func init(dealer: Dealer, players: Array[Player]) -> void:
 	var children = get_children()
 	for child in get_children():
 		if child is GameState:
 			states[child.state] = child
 			child.transition_requested.connect(_on_transition_requested)
 			child.dealer = dealer
+			child.players = players
 	if initial_state:
 		current_state = initial_state
 		initial_state.enter()
