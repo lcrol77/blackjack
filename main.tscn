@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
-[ext_resource type="Resource" uid="uid://sak3ibvh8kgb" path="res://resources/shoe/one_deck_shoe.tres" id="2_h2yge"]
 [ext_resource type="Shader" uid="uid://buybyb4ch6x6y" path="res://balatro.gdshader" id="2_lquwl"]
+[ext_resource type="Resource" uid="uid://drbwyaih4h5me" path="res://resources/shoe/ace_shoe.tres" id="4_4c57u"]
 [ext_resource type="PackedScene" uid="uid://7p4yo8ess6ee" path="res://components/player/player.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://b8sqhv3c5h4xe" path="res://game_states/game_state_machine.gd" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://b1o56f3fu2fml" path="res://game_states/dealing_state.gd" id="7_efxa6"]
@@ -67,7 +67,7 @@ anchor_right = 0.5
 offset_top = 109.0
 offset_bottom = 109.0
 grow_horizontal = 2
-shoe = ExtResource("2_h2yge")
+shoe = ExtResource("4_4c57u")
 shoe_pos = NodePath("../ShoeAnchor")
 discard_pos = NodePath("../DiscardAnchor")
 offset_amount = 15

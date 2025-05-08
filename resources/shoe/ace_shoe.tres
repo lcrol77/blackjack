@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AcesShoe" load_steps=2 format=3 uid="uid://drbwyaih4h5me"]
+
+[ext_resource type="Script" uid="uid://txrvao4jlw8g" path="res://resources/shoe/aces_shoe.gd" id="1_oagbi"]
+
+[resource]
+script = ExtResource("1_oagbi")
+number_of_decks = 0
+metadata/_custom_type_script = "uid://txrvao4jlw8g"
