@@ -20,6 +20,7 @@ func _update_label(label: Label, player: Player) -> void:
 		return
 	label.text = str(player.hand.value)
 	if player.hand.value != player.hand.alt_value:
+		# TODO: check if val is bust
 		label.text += " or "
 		label.text += str(player.hand.alt_value)
 

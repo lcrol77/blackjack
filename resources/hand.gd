@@ -4,6 +4,7 @@ extends Resource
 var cards: Array[CardResource] = []
 # NOTE: Implementation wise treat value as having 
 var value: int = 0
+# NOTE: want to display the highest one unless its bust??
 var alt_value: int = 0
 var has_ace_in_hand: bool
 
