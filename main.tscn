@@ -78,31 +78,58 @@ anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
+anchor_bottom = 1.0
 offset_top = -46.0
 offset_bottom = -46.0
+grow_horizontal = 2
 grow_vertical = 0
 
-[node name="PlayerControls" type="VBoxContainer" parent="."]
+[node name="Controls" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -177.0
-offset_top = -33.0
-offset_right = -101.0
-offset_bottom = 33.0
+offset_left = -153.0
+offset_top = -36.0
+offset_right = -92.0
+offset_bottom = 65.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Hit" type="Button" parent="PlayerControls"]
+[node name="PlayerControls" type="VBoxContainer" parent="Controls"]
+layout_mode = 2
+
+[node name="Hit" type="Button" parent="Controls/PlayerControls"]
 layout_mode = 2
 text = "HIT"
 
-[node name="Stand" type="Button" parent="PlayerControls"]
+[node name="Stand" type="Button" parent="Controls/PlayerControls"]
 layout_mode = 2
 text = "STAND"
+
+[node name="BetControls" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Button" type="Button" parent="Controls/BetControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+
+[node name="Button2" type="Button" parent="Controls/BetControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[node name="Bet" type="Label" parent="Controls"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "999999"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerLabel" type="Label" parent="."]
 layout_mode = 1
@@ -138,6 +165,36 @@ text = "??"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BankRollLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -54.0
+offset_right = -54.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Bank Roll"
+
+[node name="BankRoll" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -35.0
+offset_right = -20.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "999999"
+
 [node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_4c57u")
 initial_state = NodePath("Dealing")
@@ -158,5 +215,5 @@ state = 4
 script = ExtResource("10_w48qg")
 state = 3
 
-[connection signal="pressed" from="PlayerControls/Hit" to="." method="_on_hit_pressed"]
-[connection signal="pressed" from="PlayerControls/Stand" to="." method="_on_stand_pressed"]
+[connection signal="pressed" from="Controls/PlayerControls/Hit" to="." method="_on_hit_pressed"]
+[connection signal="pressed" from="Controls/PlayerControls/Stand" to="." method="_on_stand_pressed"]

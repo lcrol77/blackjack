@@ -4,6 +4,8 @@ extends Control
 @onready var active_player: Player = $Player
 @onready var player_label: Label = $PlayerLabel
 @onready var dealer_label: Label = $DealerLabel
+@onready var bet = $Controls/Bet
+@onready var bank_roll = $BankRoll
 
 @export var state_machine: StateMachine 
 @export var players: Array[Player] = []

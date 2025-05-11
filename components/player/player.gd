@@ -7,6 +7,7 @@ var hand_prefab = preload("res://resources/hand.gd")
 var hand: Hand
 var has_bust: bool = false
 var bet: int
+var bank_roll: int
 var has_card_hidden := false
 
 func _ready() -> void:
