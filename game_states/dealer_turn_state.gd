@@ -17,13 +17,3 @@ func take_turn() -> void:
 			return
 	current_player.stand()
 	transition_requested.emit(self, State.ENDHAND)
-
-func _reveal() -> void:
-	# TODO: add animations for this?
-	for child in dealer.get_children():
-		if child is not Card:
-			continue
-		var card := (child as Card)
-		card.is_face_down = false
-	current_player.has_card_hidden = false
-	current_player.hand_changed.emit()

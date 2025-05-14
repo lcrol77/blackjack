@@ -30,3 +30,13 @@ func stand() -> void:
 
 func progress_turn() -> void:
 	pass
+
+func _reveal() -> void:
+	# TODO: add animations for this?
+	for child in dealer.get_children():
+		if child is not Card:
+			continue
+		var card := (child as Card)
+		card.is_face_down = false
+	dealer.has_card_hidden = false
+	dealer.hand_changed.emit()

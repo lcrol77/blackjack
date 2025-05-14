@@ -39,3 +39,9 @@ func get_non_bust_values() -> Array[int]:
 
 func is_bust() -> bool:
 	return values.all(func(value:int): return value > Constants.BLACK_JACK)
+
+func has_black_jack() -> bool:
+	return values.any(func(val): return val == Constants.BLACK_JACK)
+
+func has_natural_black_jack() -> bool:
+	return has_black_jack() && cards.size() == 2
