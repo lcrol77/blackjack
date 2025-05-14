@@ -91,10 +91,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -153.0
-offset_top = -36.0
-offset_right = -92.0
-offset_bottom = 65.0
+offset_left = -119.0
+offset_top = -67.0
+offset_right = -23.0
+offset_bottom = 96.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -114,15 +114,20 @@ layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Button" type="Button" parent="Controls/BetControls"]
+[node name="Minus" type="Button" parent="Controls/BetControls"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "-"
 
-[node name="Button2" type="Button" parent="Controls/BetControls"]
+[node name="Plus" type="Button" parent="Controls/BetControls"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+"
+
+[node name="CheckBox" type="CheckBox" parent="Controls"]
+layout_mode = 2
+text = "keep bet
+"
 
 [node name="Bet" type="Label" parent="Controls"]
 custom_minimum_size = Vector2(40, 0)
