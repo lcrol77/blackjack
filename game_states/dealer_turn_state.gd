@@ -6,12 +6,12 @@ func enter() -> void:
 	await get_tree().create_timer(2).timeout
 	await take_turn()
 
-func hit() -> void:
+func _hit() -> void:
 	await dealer.deal_card(current_player)
 
 func take_turn() -> void:
 	while current_player.get_hand_value() < 17:
-		await hit()
+		await _hit()
 		if current_player.has_bust:
 			transition_requested.emit(self, State.ENDHAND)
 			return
