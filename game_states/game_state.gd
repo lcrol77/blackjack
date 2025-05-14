@@ -6,7 +6,7 @@ enum State {
 	DEALING, # Dealing cards
 	ACTIVE, # Players can play their turn
 	DEALERTURN, # Dealer taker their turn
-	CLEANUP # Players are paid out & cards are colleted
+	ENDHAND # Players are paid out & cards are colleted
 }
 
 signal transition_requested(from: GameState, to: State)
@@ -14,6 +14,7 @@ signal transition_requested(from: GameState, to: State)
 var dealer: Dealer
 var players: Array[Player]
 var current_player: Player
+var players_to_deal: Array[Player]
 
 func enter() -> void:
 	pass

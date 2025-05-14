@@ -11,7 +11,7 @@ extends Control
 @export var players: Array[Player] = []
 
 func _ready() -> void:
-	assert(players.size() >= 2, "Need 2 or more players") # if there is less then two you don't have a game. Need a dealer + player
+	assert(players.size() >= 1, "Need 1 or more players") # if there is less then two you don't have a game. Need a dealer + player
 	state_machine.init(dealer, players)
 	active_player.hand_changed.connect(_update_label.bind(player_label, active_player, false))
 	dealer.hand_changed.connect(_update_label.bind(dealer_label, dealer,false))
@@ -27,7 +27,6 @@ func _update_label(label: Label, player: Player, is_standing: bool) -> void:
 		label.text = "BUST"
 		return
 	var values: Array[int] = player.hand.get_non_bust_values()
-	values.sort_custom(func(a, b): return a > b)
 	if is_standing:
 		label.text = str(values.max())
 		return

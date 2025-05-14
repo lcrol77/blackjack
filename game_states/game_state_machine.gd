@@ -14,6 +14,9 @@ func init(dealer: Dealer, players: Array[Player]) -> void:
 			child.transition_requested.connect(_on_transition_requested)
 			child.dealer = dealer
 			child.players = players
+			var players_to_deal = players.duplicate(true)
+			players_to_deal.push_front(dealer)
+			child.players_to_deal = players_to_deal
 	if initial_state:
 		current_state = initial_state
 		initial_state.enter()

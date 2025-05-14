@@ -10,13 +10,13 @@ func hit() -> void:
 	await dealer.deal_card(current_player)
 
 func take_turn() -> void:
-	while current_player.hand.get_non_bust_values().max() < 17:
+	while current_player.get_hand_value() < 17:
 		await hit()
 		if current_player.has_bust:
-			transition_requested.emit(self, State.CLEANUP)
+			transition_requested.emit(self, State.ENDHAND)
 			return
 	current_player.stand()
-	transition_requested.emit(self, State.CLEANUP)
+	transition_requested.emit(self, State.ENDHAND)
 
 func _reveal() -> void:
 	# TODO: add animations for this?

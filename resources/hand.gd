@@ -33,7 +33,9 @@ func _backtrack(curr: int, ans: Array[int], number_aces: int) -> void:
 		curr -= i
 
 func get_non_bust_values() -> Array[int]:
-	return values.filter(func(value: int): return value <= Constants.BLACK_JACK)
+	var non_bust_values = values.filter(func(value: int): return value <= Constants.BLACK_JACK)
+	non_bust_values.sort_custom(func(a, b): return a > b)
+	return non_bust_values
 
 func is_bust() -> bool:
 	return values.all(func(value:int): return value > Constants.BLACK_JACK)
