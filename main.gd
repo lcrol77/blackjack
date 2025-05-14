@@ -41,4 +41,6 @@ func _on_stand_pressed() -> void:
 	state_machine.stand()
 
 func _on_hit_pressed() -> void:
+	if dealer.card_being_delt.is_running():
+		return
 	state_machine.hit()
