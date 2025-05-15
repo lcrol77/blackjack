@@ -8,5 +8,6 @@ func enter() -> void:
 	if dealer.has_natural:
 		print("dealer has a natural")
 		_reveal()
+		await get_tree().create_timer(2).timeout
 		transition_requested.emit(self, GameState.State.ENDHAND)
 	transition_requested.emit(self, GameState.State.ACTIVE)
