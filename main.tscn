@@ -102,7 +102,6 @@ shoe = ExtResource("4_4c57u")
 shoe_pos = NodePath("../ShoeAnchor")
 discard_pos = NodePath("../DiscardAnchor")
 offset_amount = 15
-is_debug = true
 debug_cards_to_deal = Array[ExtResource("5_efxa6")]([SubResource("Resource_efxa6"), SubResource("Resource_dg77c"), SubResource("Resource_ycdy4"), SubResource("Resource_w48qg"), SubResource("Resource_vivmo")])
 
 [node name="Player" parent="." instance=ExtResource("5_lquwl")]
