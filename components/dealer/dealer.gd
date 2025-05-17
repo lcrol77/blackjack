@@ -33,7 +33,7 @@ func clean_up_hand(players: Array[Player]) -> void:
 			card.queue_free()
 
 func deal_card(player: Player) -> bool:
-	var card := await _spawn_card(player)
+	var card := await _spawn_card(player, false, is_debug)
 	return player.hit(card)
 
 func deal(players: Array[Player]) -> void:

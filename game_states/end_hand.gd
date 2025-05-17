@@ -20,6 +20,7 @@ func filter_winners(player: Player) -> bool:
 
 func filter_push(player: Player) -> bool:
 	if player.has_bust or dealer.has_bust:
+		# we dont push busts
 		return false
 	return player.get_hand_value() == dealer.get_hand_value()
 

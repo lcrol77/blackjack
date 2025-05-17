@@ -5,6 +5,7 @@ func enter() -> void:
 	if dealer.show_card.rank == Enums.Rank.ACE:
 			# TODO: ask for insurance?
 			print("insurance?")
+			await get_tree().create_timer(2).timeout
 	if dealer.has_natural:
 		print("dealer has a natural")
 		_reveal()

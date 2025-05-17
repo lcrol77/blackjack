@@ -43,6 +43,8 @@ func reset_player() -> void:
 func get_hand_value() -> int:
 	if has_bust:
 		return -1 # for comparisons every hand beats this
+	if has_natural:
+		return 22 # idea is that naturals beat non natural 21 values
 	var vals = hand.get_non_bust_values()
 	assert(vals.size() >= 1, "for a hand to not be bust it must have atleast one valid non bust value")
 	return vals.max()

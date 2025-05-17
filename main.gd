@@ -8,7 +8,7 @@ extends Control
 @onready var bank_roll = $BankRoll
 
 @export var state_machine: StateMachine 
-@export var players: Array[Player] = []
+@export var players: Array[Player]
 
 func _ready() -> void:
 	assert(players.size() >= 1, "Need 1 or more players") # if there is less then two you don't have a game. Need a dealer + player
