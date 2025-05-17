@@ -14,9 +14,11 @@ var normalized_count: float
 func _init() -> void:
 	# NOTE: this is okay becuase the 2 inner for loops run in constant time
 	for i in number_of_decks:
-		for suit in Enums.Suit:
-			for rank in Enums.Rank:
-				var card: CardResource = card_resource_preload.new(rank, suit, false)
+		for suit in Enums.Suit.values():
+			for rank in Enums.Rank.values():
+				var card: CardResource = card_resource_preload.new()
+				card.rank = rank
+				card.suit = suit
 				cards_remaining.append(card)
 	shuffle()
 

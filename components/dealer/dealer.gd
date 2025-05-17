@@ -67,7 +67,7 @@ func _spawn_card(player: Player, is_face_down: bool=false, use_debug: bool = fal
 func get_card_res(use_debug: bool) -> CardResource:
 	if use_debug:
 		var res = debug_cards_to_deal.pop_front()
-		debug_cards_to_deal.append(res)
+		debug_cards_to_deal.push_back(res)
 		return res
 	return shoe.draw()
 

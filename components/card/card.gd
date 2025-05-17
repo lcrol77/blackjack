@@ -2,19 +2,16 @@
 class_name Card
 extends Node2D
 
+@export_group("Sprites")
 @export var card_front: Sprite2D
 @export var card_back: Sprite2D
-
+@export_group("Data")
 @export var suit: Enums.Suit: set = set_suit
 @export var rank: Enums.Rank: set = set_rank
 @export var is_face_down: bool: set = set_is_face_down
 
 const card_resource_preload = preload("res://resources/card/card_resource.gd")
 var card_resource: CardResource : set = set_card_resource
-
-func _ready() -> void:
-	if Engine.is_editor_hint():
-		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit))
 
 func set_card_resource(value: CardResource) -> void:
 	card_resource = value
@@ -37,11 +34,16 @@ func set_is_face_down(val: bool):
 func set_suit(val: Enums.Suit):
 	if Engine.is_editor_hint():
 		suit=val
-		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit))
+		_update_card_res()
 
 func set_rank(val: Enums.Rank):
 	if Engine.is_editor_hint():
 		rank=val
-		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit))
-
+		_update_card_res()
+		
+func _update_card_res() -> void:
+	var res: = card_resource_preload.new()
+	res.suit = suit
+	res.rank = rank
+	card_resource = res
 #endregion

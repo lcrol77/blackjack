@@ -8,11 +8,12 @@
 script = ExtResource("2_4pniv")
 card_front = NodePath("CardFront")
 card_back = NodePath("CardBack")
+rank = 10
 
 [node name="CardFront" type="Sprite2D" parent="."]
 texture = ExtResource("1_l0c1q")
 region_enabled = true
-region_rect = Rect2(0, 0, 65, 65)
+region_rect = Rect2(650, 0, 65, 65)
 
 [node name="CardBack" type="Sprite2D" parent="."]
 visible = false

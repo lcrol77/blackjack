@@ -3,6 +3,12 @@ extends ShoeResource
 
 func _init() -> void:
 	for rank in Enums.Rank:
-			cards_remaining.append(card_resource_preload.new(rank, Enums.Suit.keys()[Enums.Suit.SPADES], false))
-			cards_remaining.append(card_resource_preload.new(Enums.Rank.keys()[Enums.Rank.ACE], Enums.Suit.keys()[Enums.Suit.SPADES], false))
+		var ace = card_resource_preload.new()
+		ace.suit = Enums.Suit.SPADES
+		ace.rank = Enums.Rank.ACE
+		var face = card_resource_preload.new()
+		face.suit = Enums.Suit.SPADES
+		face.rank = Enums.Rank.KING
+		cards_remaining.append(face)
+		cards_remaining.append(ace)
 	shuffle()
