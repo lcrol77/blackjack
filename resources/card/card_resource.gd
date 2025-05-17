@@ -5,15 +5,15 @@ extends Resource
 @export_category("Data")
 @export var suit: Enums.Suit
 @export var rank: Enums.Rank
-@export var value: int
-@export_category("Visuals")
-@export var skin_coordinates: Vector2i
-@export var is_face_down: bool
+var value: int
+var skin_coordinates: Vector2i
 
-func _init(r: String, s: String, face_down: bool) -> void:
-	suit = Enums.Suit[s]
-	rank= Enums.Rank[r]
-	is_face_down = face_down
+
+func _init(r: String ="", s: String="") -> void:
+	if r != "":
+		suit = Enums.Suit[s]
+	if s != "":
+		rank = Enums.Rank[r]
 	name = get_card_name()
 	if rank == Enums.Rank.JACK or rank == Enums.Rank.QUEEN or rank == Enums.Rank.KING:
 		value = 10

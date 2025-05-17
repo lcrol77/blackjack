@@ -14,7 +14,7 @@ var card_resource: CardResource : set = set_card_resource
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit), is_face_down)
+		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit))
 
 func set_card_resource(value: CardResource) -> void:
 	card_resource = value
@@ -37,11 +37,11 @@ func set_is_face_down(val: bool):
 func set_suit(val: Enums.Suit):
 	if Engine.is_editor_hint():
 		suit=val
-		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit), is_face_down)
+		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit))
 
 func set_rank(val: Enums.Rank):
 	if Engine.is_editor_hint():
 		rank=val
-		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit), is_face_down)
+		card_resource = card_resource_preload.new(Enums.Rank.find_key(rank), Enums.Suit.find_key(suit))
 
 #endregion

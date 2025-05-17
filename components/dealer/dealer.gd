@@ -6,7 +6,9 @@ const card_prefab: PackedScene = preload("res://components/card/card.tscn")
 @export var shoe_pos: Control
 @export var discard_pos: Control
 @export var offset_amount = 32
-
+@export_group("debug options")
+@export var is_debug: bool = false
+@export var debug_cards_to_deal: Array[CardResource]
 var card_being_delt: Tween
 
 func _ready() -> void:
@@ -39,7 +41,7 @@ func deal(players: Array[Player]) -> void:
 	for i in range(cards_to_deal):
 		var normal_idx := i % players.size()
 		var player: Player = players[normal_idx]
-		var new_card = await _spawn_card(player, i==0)
+		var new_card = await _spawn_card(player, i==0, is_debug)
 		player.hit(new_card)
 
 func get_card_offset(player: Player) -> Vector2:
@@ -49,8 +51,8 @@ func get_card_offset(player: Player) -> Vector2:
 			count += 1
 	return Vector2(offset_amount*count, -offset_amount*count)
 
-func _spawn_card(player: Player, is_face_down:bool=false) -> Card:
-	var card_res: CardResource = shoe.draw()
+func _spawn_card(player: Player, is_face_down: bool=false, use_debug: bool = false) -> Card:
+	var card_res: CardResource = get_card_res(use_debug)
 	var new_card: Card = card_prefab.instantiate()
 	var target_position = player.global_position + get_card_offset(player)
 	player.add_child(new_card)
@@ -61,6 +63,13 @@ func _spawn_card(player: Player, is_face_down:bool=false) -> Card:
 	card_being_delt.tween_property(new_card, "global_position", target_position, 0.55)
 	await card_being_delt.finished
 	return new_card
+
+func get_card_res(use_debug: bool) -> CardResource:
+	if use_debug:
+		var res = debug_cards_to_deal.pop_front()
+		debug_cards_to_deal.append(res)
+		return res
+	return shoe.draw()
 
 func reset_hand(players: Array[Player]) -> void:
 	await clean_up_hand(players)
