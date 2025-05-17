@@ -1,10 +1,11 @@
 class_name CardResource
 extends Resource
 
-@export var name: String
 @export_category("Data")
 @export var suit: Enums.Suit
 @export var rank: Enums.Rank
+
+var name: String
 var value: int
 var skin_coordinates: Vector2i
 
@@ -29,50 +30,8 @@ func _to_string() -> String:
 func get_card_name() -> String:
 	return get_rank_name(rank) + " of " + get_suit_name(suit)
 
-# TODO: fix this shit
 func get_suit_name(suit: Enums.Suit) -> String:
-	var suit_name: String
-	match suit:
-		Enums.Suit.SPADES:
-			suit_name= "Spades"
-		Enums.Suit.CLUBS:
-			suit_name= "Clubs"
-		Enums.Suit.HEARTS:
-			suit_name= "Hearts"
-		Enums.Suit.DIAMONDS:
-			suit_name= "Diamonds"
-		_:
-			suit_name = "Invalid Suit"
-	return suit_name
-
+	return Enums.Suit.keys()[suit]
 
 func get_rank_name(rank: Enums.Rank) -> String:
-	var rank_name: String
-	match rank:
-		Enums.Rank.TWO:
-			rank_name= "Two"
-		Enums.Rank.THREE:
-			rank_name= "Three"
-		Enums.Rank.FOUR:
-			rank_name= "Four"
-		Enums.Rank.FIVE:
-			rank_name= "Five"
-		Enums.Rank.SIX:
-			rank_name= "Six"
-		Enums.Rank.SEVEN:
-			rank_name= "Seven"
-		Enums.Rank.EIGHT:
-			rank_name= "Eight"
-		Enums.Rank.NINE:
-			rank_name= "Nine"
-		Enums.Rank.TEN:
-			rank_name= "Ten"
-		Enums.Rank.JACK:
-			rank_name= "Jack"
-		Enums.Rank.QUEEN:
-			rank_name= "Queen"
-		Enums.Rank.KING:
-			rank_name= "King"
-		Enums.Rank.ACE:
-			rank_name= "Ace"
-	return rank_name
+	return Enums.Rank.keys()[rank]
