@@ -1,19 +1,26 @@
 class_name Player
 extends Control
 
-signal hand_changed()
+signal hand_changed
 signal hand_confirmed
+signal bank_roll_changed
 var hand_prefab = preload("res://resources/hand.gd")
 var hand: Hand
+
+#FIXME: move these into a player stats resource
 var has_bust: bool = false # flag tracking if the player has bust
 var has_natural: bool = false # flag tracking if the player has a natural black jack
 var bet: int
-var bank_roll: int
+var bank_roll: int: 
+	set(value):
+		bank_roll = value
+		bank_roll_changed.emit(bank_roll)
 var show_card: CardResource
 var has_card_hidden: bool = false
 
 func _ready() -> void:
 	reset_player()
+	bank_roll = 500
 
 func hit(card: Card) -> bool:
 	if card.is_face_down:
@@ -39,6 +46,7 @@ func reset_player() -> void:
 	has_natural = false
 	has_card_hidden = false
 	hand_changed.emit()
+	
  
 func get_hand_value() -> int:
 	if has_bust:

@@ -13,10 +13,14 @@ extends Control
 func _ready() -> void:
 	assert(players.size() >= 1, "Need 1 or more players") # if there is less then two you don't have a game. Need a dealer + player
 	state_machine.init(dealer, players)
+	# current_player signals
 	active_player.hand_changed.connect(_update_label.bind(player_label, active_player, false))
-	dealer.hand_changed.connect(_update_label.bind(dealer_label, dealer,false))
 	active_player.hand_confirmed.connect(_update_label.bind(player_label, active_player, true))
+	active_player.bank_roll_changed.connect(_update_bank_roll)
+	active_player.bank_roll_changed.emit(active_player.bank_roll)
+	# dealer signals
 	dealer.hand_confirmed.connect(_update_label.bind(dealer_label, dealer, true))
+	dealer.hand_changed.connect(_update_label.bind(dealer_label, dealer,false))
 
 
 func _update_label(label: Label, player: Player, is_standing: bool) -> void:
@@ -36,6 +40,9 @@ func _update_label(label: Label, player: Player, is_standing: bool) -> void:
 		if i != values.size() -1:
 			txt+= " / "
 	label.text = txt
+
+func _update_bank_roll(new_bank_roll: int)-> void:
+	bank_roll.text = str(new_bank_roll)
 
 func _on_stand_pressed() -> void:
 	state_machine.stand()
