@@ -199,7 +199,7 @@ icon_alignment = 1
 [node name="Bet" type="Label" parent="Controls"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-text = "999"
+text = "999999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -259,13 +259,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -104.0
-offset_top = -32.0
-offset_right = -4.0
-offset_bottom = -9.0
+offset_left = -120.0
+offset_top = -35.0
+offset_right = -20.0
+offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "999"
+text = "999999"
 
 [node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_4c57u")

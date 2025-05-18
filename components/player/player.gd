@@ -3,14 +3,18 @@ extends Control
 
 signal hand_changed
 signal hand_confirmed
-signal bank_roll_changed
+signal bank_roll_changed(new_bank_roll)
+signal bet_changed(new_bet)
 var hand_prefab = preload("res://resources/hand.gd")
 var hand: Hand
 
 #FIXME: move these into a player stats resource
 var has_bust: bool = false # flag tracking if the player has bust
 var has_natural: bool = false # flag tracking if the player has a natural black jack
-var bet: int
+var bet: int:
+	set(value):
+		bet = value
+		bet_changed.emit(bet)
 var bank_roll: int: 
 	set(value):
 		bank_roll = value
@@ -21,6 +25,7 @@ var has_card_hidden: bool = false
 func _ready() -> void:
 	reset_player()
 	bank_roll = 500
+	bet = 0
 
 func hit(card: Card) -> bool:
 	if card.is_face_down:
