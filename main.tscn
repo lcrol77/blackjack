@@ -129,6 +129,7 @@ offset_right = -23.0
 offset_bottom = 96.0
 grow_horizontal = 0
 grow_vertical = 2
+alignment = 1
 
 [node name="PlayerControls" type="VBoxContainer" parent="Controls"]
 layout_mode = 2
@@ -149,17 +150,51 @@ alignment = 1
 [node name="Minus" type="Button" parent="Controls/BetControls"]
 layout_mode = 2
 size_flags_horizontal = 3
+toggle_mode = true
 text = "-"
 
 [node name="Plus" type="Button" parent="Controls/BetControls"]
 layout_mode = 2
 size_flags_horizontal = 3
+toggle_mode = true
 text = "+"
+
+[node name="BetAmounts" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="1" type="Button" parent="Controls/BetAmounts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="5" type="Button" parent="Controls/BetAmounts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5"
+
+[node name="10" type="Button" parent="Controls/BetAmounts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10"
+
+[node name="25" type="Button" parent="Controls/BetAmounts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "25"
+
+[node name="50" type="Button" parent="Controls/BetAmounts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "50"
 
 [node name="CheckBox" type="CheckBox" parent="Controls"]
 layout_mode = 2
 text = "keep bet
 "
+alignment = 1
+icon_alignment = 1
 
 [node name="Bet" type="Label" parent="Controls"]
 custom_minimum_size = Vector2(40, 0)
