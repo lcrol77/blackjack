@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=19 format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b8sqhv3c5h4xe" path="res://game_states/game_state_machine.gd" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://b1o56f3fu2fml" path="res://game_states/dealing_state.gd" id="7_efxa6"]
 [ext_resource type="Script" uid="uid://o3ddowa3m6lg" path="res://game_states/active_state.gd" id="8_dg77c"]
+[ext_resource type="Script" uid="uid://xoc6aibrey88" path="res://game_states/preround_state.gd" id="8_ycdy4"]
 [ext_resource type="Script" uid="uid://10wxq54gtowq" path="res://game_states/end_hand.gd" id="9_ycdy4"]
 [ext_resource type="Script" uid="uid://b5xdknay8fol6" path="res://game_states/dealer_turn_state.gd" id="10_w48qg"]
 
@@ -205,6 +206,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayerLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -221,7 +224,25 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DealButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -15.5
+offset_right = 24.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "DEAL"
+
 [node name="DealerLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -270,7 +291,10 @@ text = "999"
 
 [node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_4c57u")
-initial_state = NodePath("Dealing")
+initial_state = NodePath("Preround")
+
+[node name="Preround" type="Node" parent="GameStateMachine"]
+script = ExtResource("8_ycdy4")
 
 [node name="Dealing" type="Node" parent="GameStateMachine"]
 script = ExtResource("7_efxa6")
@@ -290,3 +314,4 @@ state = 4
 
 [connection signal="pressed" from="Controls/PlayerControls/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Controls/PlayerControls/Stand" to="." method="_on_stand_pressed"]
+[connection signal="pressed" from="DealButton" to="." method="_on_deal_button_pressed"]

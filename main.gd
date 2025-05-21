@@ -78,6 +78,8 @@ func _on_plus_minus_toggled(_this: Button, other: Button) -> void:
 	if other.button_pressed:
 		other.button_pressed = false
 
+# TODO: move the inner logic here into the statemachine so that I can only change
+# the bet amount durring the preround state
 func _on_change_bet_amount(bet_amount: int) -> void:
 	#TODO: add validation
 	if plus.button_pressed:
@@ -95,4 +97,6 @@ func _on_change_bet_amount(bet_amount: int) -> void:
 			active_player.bet = 0
 			return
 		active_player.bet -= bet_amount
-	
+
+func _on_deal_button_pressed() -> void:
+	state_machine.current_state.transition_requested.emit(state_machine.current_state, GameState.State.DEALING)

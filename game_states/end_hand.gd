@@ -11,7 +11,7 @@ func enter()-> void:
 	# clean up
 	await get_tree().create_timer(2).timeout
 	await dealer.reset_hand(players_to_deal)
-	transition_requested.emit(self, State.DEALING) #TODO: this needs to direct to preround, but thats for later
+	transition_requested.emit(self, State.PREROUND) #TODO: this needs to direct to preround, but thats for later
 
 func filter_winners(player: Player) -> bool:
 	if player.has_bust:
