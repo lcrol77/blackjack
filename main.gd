@@ -17,20 +17,21 @@ var plus_active: bool = false
 var minus_active: bool = false
 
 func _ready() -> void:
-	assert(players.size() >= 1, "Need 1 or more players") # if there is less then two you don't have a game. Need a dealer + player
+	assert(players.size() >= 1, "Need 1 or more players")
 	state_machine.init(dealer, players)
 	
-	# current_player init
+	#region current_player init
 	active_player.hand_changed.connect(_update_label.bind(player_label, active_player, false))
 	active_player.hand_confirmed.connect(_update_label.bind(player_label, active_player, true))
 	active_player.bank_roll_changed.connect(_update_bank_roll)
 	active_player.bet_changed.connect(_update_bet_amount)
 	_update_bank_roll(active_player.bank_roll) # Initialize the bank roll to what the player currently has
 	_update_bet_amount(active_player.bet)
-	# dealer init
+	#endregion
+	#region dealer init
 	dealer.hand_confirmed.connect(_update_label.bind(dealer_label, dealer, true))
 	dealer.hand_changed.connect(_update_label.bind(dealer_label, dealer,false))
-
+	#endregion
 	plus.pressed.connect(_on_plus_minus_toggled.bind(plus, minus))
 	minus.pressed.connect(_on_plus_minus_toggled.bind(minus, plus))
 	
@@ -73,14 +74,25 @@ func _on_hit_pressed() -> void:
 		return
 	state_machine.hit()
 
-func _on_plus_minus_toggled(this: Button, other: Button) -> void:
+func _on_plus_minus_toggled(_this: Button, other: Button) -> void:
 	if other.button_pressed:
 		other.button_pressed = false
 
 func _on_change_bet_amount(bet_amount: int) -> void:
 	#TODO: add validation
 	if plus.button_pressed:
+		if active_player.bet + bet_amount > active_player.bank_roll:
+			print("Dont have deep enough pockets to place that bet")
+			# TODO: have som kind of ui signal to indicate that a player 
+			# has insufficient bank roll
+			return
 		active_player.bet += bet_amount
 	elif minus.button_pressed:
+		if active_player.bet - bet_amount < 0:
+			# TODO: I am not sure where to put this todo yet, but 
+			# the player cannot play blackjack with out a wager
+			# and they need add some kind of minimum
+			active_player.bet = 0
+			return
 		active_player.bet -= bet_amount
 	
