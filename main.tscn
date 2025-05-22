@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=20 format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://7p4yo8ess6ee" path="res://components/player/player.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://b8sqhv3c5h4xe" path="res://game_states/game_state_machine.gd" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://b1o56f3fu2fml" path="res://game_states/dealing_state.gd" id="7_efxa6"]
+[ext_resource type="Script" uid="uid://ccd3w2xpfo8py" path="res://ui/check_box.gd" id="7_ycdy4"]
 [ext_resource type="Script" uid="uid://o3ddowa3m6lg" path="res://game_states/active_state.gd" id="8_dg77c"]
 [ext_resource type="Script" uid="uid://xoc6aibrey88" path="res://game_states/preround_state.gd" id="8_ycdy4"]
 [ext_resource type="Script" uid="uid://10wxq54gtowq" path="res://game_states/end_hand.gd" id="9_ycdy4"]
@@ -133,6 +134,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="PlayerControls" type="VBoxContainer" parent="Controls"]
+visible = false
 layout_mode = 2
 
 [node name="Hit" type="Button" parent="Controls/PlayerControls"]
@@ -193,10 +195,11 @@ text = "50"
 
 [node name="CheckBox" type="CheckBox" parent="Controls"]
 layout_mode = 2
-text = "keep bet
-"
+tooltip_text = "keep this bet and auto start the next round"
+text = "keep bet"
 alignment = 1
 icon_alignment = 1
+script = ExtResource("7_ycdy4")
 
 [node name="Bet" type="Label" parent="Controls"]
 custom_minimum_size = Vector2(40, 0)
