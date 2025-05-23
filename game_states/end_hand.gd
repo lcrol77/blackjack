@@ -2,12 +2,13 @@ extends GameState
 
 func enter()-> void:
 	# determine winner
-	var winners = players.filter(filter_winners)
-	var pushed = players.filter(filter_push)
-	var losers = players.filter(filter_losers)
-	print("Winners", winners)
-	print("Pushed", pushed)
-	print("Losers", losers)
+	var winners: Array[Player] = players.filter(filter_winners)
+	var pushed: Array[Player] = players.filter(filter_push)
+	var losers: Array[Player] = players.filter(filter_losers)
+	for player in winners:
+		player.bank_roll += player.bet
+	for player in losers:
+		player.bank_roll -= player.bet
 	# clean up
 	await get_tree().create_timer(2).timeout
 	await dealer.reset_hand(players_to_deal)

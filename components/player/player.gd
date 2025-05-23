@@ -51,8 +51,8 @@ func reset_player() -> void:
 	has_natural = false
 	has_card_hidden = false
 	hand_changed.emit()
-	
- 
+	bet = 0
+
 func get_hand_value() -> int:
 	if has_bust:
 		return -1 # for comparisons every hand beats this
