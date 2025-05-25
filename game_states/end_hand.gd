@@ -7,6 +7,8 @@ func enter()-> void:
 	var losers: Array[Player] = players.filter(filter_losers)
 	for player in winners:
 		player.bank_roll += player.bet * 2  # we get back our original wager + the wager we get from winning	
+	for player in pushed:
+		player.bank_roll += player.bet # adding back our pushed bet
 	# clean up
 	await get_tree().create_timer(2).timeout
 	await dealer.reset_hand(players_to_deal)

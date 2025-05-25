@@ -81,7 +81,8 @@ func _on_plus_minus_toggled(_this: Button, other: Button) -> void:
 # TODO: move the inner logic here into the statemachine so that I can only change
 # the bet amount durring the preround state
 func _on_change_bet_amount(bet_amount: int) -> void:
-	#TODO: add validation
+	# TODO: when the bet amount changes with the controls I think that we want to 
+	# subtract / add that amount from the bank roll. It provides better feedback to the player visually
 	if plus.button_pressed:
 		if active_player.bet + bet_amount > active_player.bank_roll:
 			print("Dont have deep enough pockets to place that bet")

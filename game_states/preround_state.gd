@@ -19,6 +19,7 @@ func exit() -> void:
 	for player in players:
 		player.bank_roll -= player.bet
 	_toggle_bet_control_elements(true)
+	
 func _toggle_bet_control_elements(is_disabled: bool) -> void:
 	for child in bet_amounts.get_children():
 		(child as Button).disabled = is_disabled
