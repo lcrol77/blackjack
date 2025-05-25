@@ -70,7 +70,7 @@ func _on_stand_pressed() -> void:
 	state_machine.stand()
 
 func _on_hit_pressed() -> void:
-	if dealer.card_being_delt.is_running():
+	if dealer.card_being_delt and dealer.card_being_delt.is_running():
 		return
 	state_machine.hit()
 
@@ -99,4 +99,8 @@ func _on_change_bet_amount(bet_amount: int) -> void:
 		active_player.bet -= bet_amount
 
 func _on_deal_button_pressed() -> void:
+	if active_player.bet <= 0:
+		# TODO: add some visualization for this error
+		print("bet must be set")
+		return
 	state_machine.current_state.transition_requested.emit(state_machine.current_state, GameState.State.DEALING)
