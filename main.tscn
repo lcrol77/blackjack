@@ -241,7 +241,7 @@ offset_right = 24.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "DEAL"
+text = "READY"
 
 [node name="DealerLabel" type="Label" parent="."]
 unique_name_in_owner = true
