@@ -84,7 +84,7 @@ func _on_change_bet_amount(bet_amount: int) -> void:
 	# TODO: when the bet amount changes with the controls I think that we want to 
 	# subtract / add that amount from the bank roll. It provides better feedback to the player visually
 	if plus.button_pressed:
-		if active_player.bet + bet_amount > active_player.bank_roll:
+		if active_player.validate_bet(bet_amount):
 			print("Dont have deep enough pockets to place that bet")
 			# TODO: have som kind of ui signal to indicate that a player 
 			# has insufficient bank roll

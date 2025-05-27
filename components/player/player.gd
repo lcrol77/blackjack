@@ -61,3 +61,7 @@ func get_hand_value() -> int:
 	var vals = hand.get_non_bust_values()
 	assert(vals.size() >= 1, "for a hand to not be bust it must have atleast one valid non bust value")
 	return vals.max()
+
+func validate_bet(bet_amount: int) -> bool:
+	return bank_roll - bet_amount < 0
+		
