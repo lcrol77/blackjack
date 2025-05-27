@@ -7,6 +7,7 @@ signal bank_roll_changed(new_bank_roll)
 signal bet_changed(new_bet)
 var hand_prefab = preload("res://resources/hand.gd")
 var hand: Hand
+@onready var keep_bet: CheckBox = %KeepBet
 
 #FIXME: move these into a player stats resource
 var has_bust: bool = false # flag tracking if the player has bust
@@ -51,6 +52,8 @@ func reset_player() -> void:
 	has_natural = false
 	has_card_hidden = false
 	hand_changed.emit()
+	if keep_bet.button_pressed:
+		return 
 	bet = 0
 
 func get_hand_value() -> int:

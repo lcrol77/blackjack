@@ -13,7 +13,8 @@ signal transition_requested(from: GameState, to: State)
 @export var state: State
 var dealer: Dealer
 var players: Array[Player]
-var current_player: Player
+var current_player: Player # this is the player who's turn it currently is. Can be a bot or the dealer 
+var active_player: Player # this is the player who is playing the game from this perspective (will be different if I decide to go multiplayer)
 var players_to_deal: Array[Player]
 
 func enter() -> void:

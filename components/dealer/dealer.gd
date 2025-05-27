@@ -74,4 +74,4 @@ func get_card_res(use_debug: bool) -> CardResource:
 func reset_hand(players: Array[Player]) -> void:
 	await clean_up_hand(players)
 	for player in get_tree().get_nodes_in_group("players"):
-		player.reset_player()
+		(player as Player).reset_player()
