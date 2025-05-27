@@ -16,8 +16,6 @@ func exit() -> void:
 	deal_button.hide()
 	player_label.show()
 	dealer_label.show()
-	for player in players:
-		player.bank_roll -= player.bet
 	_toggle_bet_control_elements(true)
 	
 func _toggle_bet_control_elements(is_disabled: bool) -> void:
