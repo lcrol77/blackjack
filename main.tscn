@@ -193,7 +193,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "50"
 
-[node name="CheckBox" type="CheckBox" parent="Controls"]
+[node name="KeepBet" type="CheckBox" parent="Controls"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "keep this bet and auto start the next round"
 text = "keep bet"
