@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp0b1c5r3ct80"]
+
+[sub_resource type="Theme" id="Theme_gk8rk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_db016"]
+bg_color = Color(0, 0.0823529, 0.113725, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfrp7"]
+bg_color = Color(0, 0.0823529, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gk8rk"]
+bg_color = Color(0, 0.345098, 0.129412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gk8rk"]
+
+[node name="Notification" type="PanelContainer"]
+offset_right = 200.0
+offset_bottom = 30.0
+theme = SubResource("Theme_gk8rk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_db016")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pfrp7")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gk8rk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Hey! you cannot do that~!"
+label_settings = SubResource("LabelSettings_gk8rk")
+horizontal_alignment = 1
+vertical_alignment = 1
