@@ -31,7 +31,7 @@ func _is_keeping_bet() -> bool:
 	if keep_bet.button_pressed:
 		if active_player.bank_roll - active_player.bet < 0:
 			# we dont have enough to place this bet
-			print("do not have enough money to place a recurring bet")
+			Notification.show_side("do not have enough money to place a recurring bet")
 			active_player.bet = 0
 			return false
 		else:

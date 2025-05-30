@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcko5k4vappix"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gk8rk"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 0.552941)
+
+[node name="SideLabel" type="Label"]
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_gk8rk")
+text = "Item"
+horizontal_alignment = 1
+vertical_alignment = 1

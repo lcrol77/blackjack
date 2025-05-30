@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=20 format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://xoc6aibrey88" path="res://game_states/preround_state.gd" id="8_ycdy4"]
 [ext_resource type="Script" uid="uid://10wxq54gtowq" path="res://game_states/end_hand.gd" id="9_ycdy4"]
 [ext_resource type="Script" uid="uid://b5xdknay8fol6" path="res://game_states/dealer_turn_state.gd" id="10_w48qg"]
+[ext_resource type="PackedScene" uid="uid://x348qxl1os8w" path="res://components/notification/notification.tscn" id="13_ycdy4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 shader = ExtResource("2_lquwl")
@@ -314,6 +315,9 @@ state = 3
 [node name="EndHand" type="Node" parent="GameStateMachine"]
 script = ExtResource("9_ycdy4")
 state = 4
+
+[node name="Notification" parent="." instance=ExtResource("13_ycdy4")]
+debug = true
 
 [connection signal="pressed" from="Controls/PlayerControls/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Controls/PlayerControls/Stand" to="." method="_on_stand_pressed"]

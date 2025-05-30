@@ -20,6 +20,7 @@ config/icon="uid://bwkurib3p7qxs"
 Enums="*res://resources/globals/enums.gd"
 Signals="*res://globals/signals.gd"
 Constants="*res://globals/constants.gd"
+Notification="*res://components/notification/notification.tscn"
 
 [display]
 

@@ -78,25 +78,15 @@ func _on_plus_minus_toggled(_this: Button, other: Button) -> void:
 	if other.button_pressed:
 		other.button_pressed = false
 
-# TODO: move the inner logic here into the statemachine so that I can only change
-# the bet amount durring the preround state
 func _on_change_bet_amount(bet_amount: int) -> void:
-	# TODO: when the bet amount changes with the controls I think that we want to 
-	# subtract / add that amount from the bank roll. It provides better feedback to the player visually
-	
 	if plus.button_pressed:
 		if active_player.validate_bet(bet_amount):
-			print("Dont have deep enough pockets to place that bet")
-			# TODO: have som kind of ui signal to indicate that a player 
-			# has insufficient bank roll
+			Notification.show_side("Not enough for bet")
 			return
 		active_player.bet += bet_amount
 		active_player.bank_roll -= bet_amount
 	elif minus.button_pressed:
 		if active_player.bet - bet_amount < 0:
-			# TODO: I am not sure where to put this todo yet, but 
-			# the player cannot play blackjack with out a wager
-			# and they need add some kind of minimum
 			active_player.bet = 0
 			return
 		active_player.bet -= bet_amount
@@ -104,7 +94,6 @@ func _on_change_bet_amount(bet_amount: int) -> void:
 
 func _on_deal_button_pressed() -> void:
 	if active_player.bet <= 0:
-		# TODO: add some visualization for this error
-		print("bet must be set")
+		Notification.show_mid("Must place a bet")
 		return
 	state_machine.current_state.transition_requested.emit(state_machine.current_state, GameState.State.DEALING)
