@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Blackjack"
-run/main_scene="uid://lkypvbkr0x5c"
+run/main_scene="uid://b8u2sa6c4xmxv"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://bwkurib3p7qxs"
 

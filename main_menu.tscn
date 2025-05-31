@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxsmjo4vgmxx6"]
+[gd_scene load_steps=4 format=3 uid="uid://b8u2sa6c4xmxv"]
 
-[ext_resource type="Shader" uid="uid://buybyb4ch6x6y" path="res://balatro.gdshader" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://bhf43wgsyuvwr" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Shader" uid="uid://buybyb4ch6x6y" path="res://balatro.gdshader" id="2_7vrkn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vrkn"]
-shader = ExtResource("1_06t4h")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06t4h"]
+shader = ExtResource("2_7vrkn")
 shader_parameter/spin_rotation_speed = 2.0
 shader_parameter/move_speed = 7.0
 shader_parameter/offset = Vector2(0, 0)
@@ -23,15 +24,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7vrkn")
 
-[node name="BG" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_7vrkn")
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_06t4h")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -40,9 +44,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
+offset_left = -151.5
 offset_top = -87.0
-offset_right = 200.0
+offset_right = 151.5
 offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -63,22 +67,28 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="Start" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Start"
 
-[node name="Button2" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="Stats" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Stats"
+disabled = true
+text = "Stats
+"
 
-[node name="Button3" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="Options" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 text = "Options"
 
-[node name="Button4" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="Quit" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Quit"
+
+[connection signal="pressed" from="Panel/MarginContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
