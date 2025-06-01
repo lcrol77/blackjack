@@ -20,7 +20,7 @@ func _on_node_added(node: Node) -> void:
 		node.pressed.connect(_button_pressed_sfx)
 
 func _button_pressed_sfx() -> void:
-	playback.play_stream(preload('res://assets/sounds/button.ogg'), 0, 0, randf_range(0.9, 1.1))
+	playback.play_stream(preload('res://assets/sounds/generic1.ogg'), 0, 0, randf_range(0.9, 1.1))
 
 func play_card_sound() -> void:
 	playback.play_stream(preload('res://assets/sounds/card1.ogg'), 0, 0, randf_range(0.9, 1.1))
