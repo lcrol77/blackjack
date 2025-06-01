@@ -16,6 +16,8 @@ extends Control
 var plus_active: bool = false
 var minus_active: bool = false
 
+
+
 func _ready() -> void:
 	assert(players.size() >= 1, "Need 1 or more players")
 	state_machine.init(dealer, players,active_player)
