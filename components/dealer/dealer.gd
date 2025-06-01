@@ -65,6 +65,7 @@ func _spawn_card(player: Player, is_face_down: bool=false, use_debug: bool = fal
 		new_card.rotate(deg_to_rad(randf_range(-rotation_range,rotation_range))) 
 	card_being_delt = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 	card_being_delt.tween_property(new_card, "global_position", target_position, 0.55)
+	SoundManager.play_card_sound()
 	await card_being_delt.finished
 	return new_card
 

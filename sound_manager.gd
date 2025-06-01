@@ -21,3 +21,6 @@ func _on_node_added(node: Node) -> void:
 
 func _button_pressed_sfx() -> void:
 	playback.play_stream(preload('res://assets/sounds/button.ogg'), 0, 0, randf_range(0.9, 1.1))
+
+func play_card_sound() -> void:
+	playback.play_stream(preload('res://assets/sounds/card1.ogg'), 0, 0, randf_range(0.9, 1.1))
