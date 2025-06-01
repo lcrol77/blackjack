@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene load_steps=21 format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="Theme" uid="uid://2ek42a35qc1j" path="res://theme.tres" id="1_w48qg"]
 [ext_resource type="Shader" uid="uid://buybyb4ch6x6y" path="res://balatro.gdshader" id="2_lquwl"]
 [ext_resource type="Resource" uid="uid://sak3ibvh8kgb" path="res://resources/shoe/one_deck_shoe.tres" id="4_4c57u"]
 [ext_resource type="Script" uid="uid://bgorstco6ad37" path="res://resources/card/card_resource.gd" id="5_efxa6"]
@@ -67,6 +68,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_w48qg")
 script = ExtResource("1_lquwl")
 state_machine = NodePath("GameStateMachine")
 players = [NodePath("Player")]
