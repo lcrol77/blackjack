@@ -30,6 +30,7 @@ func clean_up_hand(players: Array[Player]) -> void:
 				continue
 			var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 			tween.tween_property(card, "global_position", discard_pos.global_position, 0.2)
+			SoundManager.play_card_clean_up()
 			await tween.finished
 			pos.remove_child(card)
 			card.queue_free()
