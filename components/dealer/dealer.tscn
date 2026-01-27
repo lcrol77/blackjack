@@ -6,5 +6,6 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_wgax2")
+use_rotation = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
