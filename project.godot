@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Blackjack"
 run/main_scene="uid://b8u2sa6c4xmxv"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://bwkurib3p7qxs"
 
 [autoload]
@@ -30,6 +30,7 @@ window/size/viewport_height=360
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -42,4 +43,6 @@ players=""
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/canvas_textures/default_texture_filter=0
