@@ -17,6 +17,11 @@ func enter()-> void:
 		player.bank_roll += player.bet # adding back our pushed bet
 	# clean up
 	await get_tree().create_timer(2).timeout
+	if active_player.bank_roll <= 0:
+		Notification.show_mid("Out of money")
+		await get_tree().create_timer(2).timeout
+		get_tree().change_scene_to_file("res://main_menu.tscn")
+		return
 	await dealer.reset_hand(players_to_deal)
 	transition_requested.emit(self, State.PREROUND)
 

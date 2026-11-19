@@ -6,17 +6,11 @@ extends Control
 @onready var dealer_label: Label = $DealerLabel
 @onready var bet = $Controls/Bet
 @onready var bank_roll = $BankRoll
-@onready var minus: Button = $Controls/BetControls/Minus
-@onready var plus: Button = $Controls/BetControls/Plus
 @onready var bet_amounts: HBoxContainer = $Controls/BetAmounts
+@onready var clear: Button = $Controls/Clear
 
 @export var state_machine: StateMachine 
 @export var players: Array[Player]
-
-var plus_active: bool = false
-var minus_active: bool = false
-
-
 
 func _ready() -> void:
 	assert(players.size() >= 1, "Need 1 or more players")
@@ -34,8 +28,6 @@ func _ready() -> void:
 	dealer.hand_confirmed.connect(_update_label.bind(dealer_label, dealer, true))
 	dealer.hand_changed.connect(_update_label.bind(dealer_label, dealer,false))
 	#endregion
-	plus.pressed.connect(_on_plus_minus_toggled.bind(plus, minus))
-	minus.pressed.connect(_on_plus_minus_toggled.bind(minus, plus))
 	
 	for child in bet_amounts.get_children():
 		if child is not Button:
@@ -43,7 +35,8 @@ func _ready() -> void:
 		assert(child.name.is_valid_int(), "please name the button with the correct numeric value")
 		var button_value: int = int(child.name)
 		(child as Button).pressed.connect(_on_change_bet_amount.bind(button_value))
-	 
+	clear.pressed.connect(_on_clear)
+
 func _update_label(label: Label, player: Player, is_standing: bool) -> void:
 	if player.has_card_hidden:
 		label.text = "??"
@@ -76,24 +69,18 @@ func _on_hit_pressed() -> void:
 		return
 	state_machine.hit()
 
-func _on_plus_minus_toggled(_this: Button, other: Button) -> void:
-	if other.button_pressed:
-		other.button_pressed = false
-
 func _on_change_bet_amount(bet_amount: int) -> void:
-	if plus.button_pressed:
 		if active_player.validate_bet(bet_amount):
 			Notification.show_side("Not enough for bet")
 			return
 		active_player.bet += bet_amount
 		active_player.bank_roll -= bet_amount
-	elif minus.button_pressed:
-		if active_player.bet - bet_amount < 0:
-			active_player.bet = 0
-			return
-		active_player.bet -= bet_amount
-		active_player.bank_roll += bet_amount
-
+		
+func _on_clear() -> void:
+	var current_bet := active_player.bet
+	active_player.bet = 0
+	active_player.bank_roll += current_bet
+	
 func _on_deal_button_pressed() -> void:
 	if active_player.bet <= 0:
 		Notification.show_mid("Must place a bet")

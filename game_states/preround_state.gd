@@ -3,9 +3,9 @@ extends GameState
 @onready var player_label: Label = %PlayerLabel
 @onready var deal_button: Button = %DealButton
 @onready var dealer_label: Label = %DealerLabel
-@onready var bet_controls = %BetControls
 @onready var bet_amounts = %BetAmounts
 @onready var keep_bet: CheckBox = %KeepBet
+@onready var clear: Button = %Clear
 
 func enter()-> void:
 	if _is_keeping_bet():
@@ -24,8 +24,7 @@ func exit() -> void:
 func _toggle_bet_control_elements(is_disabled: bool) -> void:
 	for child in bet_amounts.get_children():
 		(child as Button).disabled = is_disabled
-	for child in bet_controls.get_children():
-		(child as Button).disabled = is_disabled
+	clear.disabled = is_disabled
 
 func _is_keeping_bet() -> bool:
 	if keep_bet.button_pressed:

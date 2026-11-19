@@ -11,4 +11,5 @@ func enter() -> void:
 		_reveal()
 		await get_tree().create_timer(2).timeout
 		transition_requested.emit(self, GameState.State.ENDHAND)
+		return
 	transition_requested.emit(self, GameState.State.ACTIVE)

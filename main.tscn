@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://lkypvbkr0x5c"]
+[gd_scene format=3 uid="uid://lkypvbkr0x5c"]
 
 [ext_resource type="PackedScene" uid="uid://d3of1dl62np5h" path="res://components/dealer/dealer.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ll0r764xmfrc" path="res://main.gd" id="1_lquwl"]
@@ -37,8 +37,6 @@ metadata/_custom_type_script = "uid://bgorstco6ad37"
 
 [sub_resource type="Resource" id="Resource_dg77c"]
 script = ExtResource("5_efxa6")
-suit = 0
-rank = 0
 metadata/_custom_type_script = "uid://bgorstco6ad37"
 
 [sub_resource type="Resource" id="Resource_ycdy4"]
@@ -49,7 +47,6 @@ metadata/_custom_type_script = "uid://bgorstco6ad37"
 
 [sub_resource type="Resource" id="Resource_w48qg"]
 script = ExtResource("5_efxa6")
-suit = 0
 rank = 12
 metadata/_custom_type_script = "uid://bgorstco6ad37"
 
@@ -59,7 +56,7 @@ suit = 3
 rank = 5
 metadata/_custom_type_script = "uid://bgorstco6ad37"
 
-[node name="Main" type="Control" node_paths=PackedStringArray("state_machine", "players")]
+[node name="Main" type="Control" unique_id=1880087943 node_paths=PackedStringArray("state_machine", "players")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,7 +70,7 @@ script = ExtResource("1_lquwl")
 state_machine = NodePath("GameStateMachine")
 players = [NodePath("Player")]
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="." unique_id=1040145171]
 material = SubResource("ShaderMaterial_0xm2m")
 layout_mode = 1
 anchors_preset = 15
@@ -82,18 +79,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShoeAnchor" type="Control" parent="."]
+[node name="ShoeAnchor" type="Control" parent="." unique_id=367137826]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 grow_horizontal = 0
 
-[node name="DiscardAnchor" type="Control" parent="."]
-layout_mode = 3
+[node name="DiscardAnchor" type="Control" parent="." unique_id=1143920525]
 anchors_preset = 0
 
-[node name="Dealer" parent="." node_paths=PackedStringArray("shoe_pos", "discard_pos") groups=["dealer"] instance=ExtResource("1_0xm2m")]
+[node name="Dealer" parent="." unique_id=1894926530 node_paths=PackedStringArray("shoe_pos", "discard_pos") groups=["dealer"] instance=ExtResource("1_0xm2m")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -107,7 +103,7 @@ discard_pos = NodePath("../DiscardAnchor")
 offset_amount = 15
 debug_cards_to_deal = Array[ExtResource("5_efxa6")]([SubResource("Resource_efxa6"), SubResource("Resource_dg77c"), SubResource("Resource_ycdy4"), SubResource("Resource_w48qg"), SubResource("Resource_vivmo")])
 
-[node name="Player" parent="." instance=ExtResource("5_lquwl")]
+[node name="Player" parent="." unique_id=1337976776 instance=ExtResource("5_lquwl")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -119,7 +115,7 @@ offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Controls" type="VBoxContainer" parent="."]
+[node name="Controls" type="VBoxContainer" parent="." unique_id=1986343135]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -134,68 +130,55 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="PlayerControls" type="VBoxContainer" parent="Controls"]
+[node name="PlayerControls" type="VBoxContainer" parent="Controls" unique_id=117262815]
 layout_mode = 2
 
-[node name="Hit" type="Button" parent="Controls/PlayerControls"]
+[node name="Hit" type="Button" parent="Controls/PlayerControls" unique_id=2050861578]
 layout_mode = 2
 text = "HIT"
 
-[node name="Stand" type="Button" parent="Controls/PlayerControls"]
+[node name="Stand" type="Button" parent="Controls/PlayerControls" unique_id=2000520043]
 layout_mode = 2
 text = "STAND"
 
-[node name="BetControls" type="HBoxContainer" parent="Controls"]
+[node name="BetAmounts" type="HBoxContainer" parent="Controls" unique_id=855246107]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Minus" type="Button" parent="Controls/BetControls"]
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = true
-text = "-"
-
-[node name="Plus" type="Button" parent="Controls/BetControls"]
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = true
-button_pressed = true
-text = "+"
-
-[node name="BetAmounts" type="HBoxContainer" parent="Controls"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="1" type="Button" parent="Controls/BetAmounts"]
+[node name="1" type="Button" parent="Controls/BetAmounts" unique_id=1466088982]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1"
 
-[node name="5" type="Button" parent="Controls/BetAmounts"]
+[node name="5" type="Button" parent="Controls/BetAmounts" unique_id=1119002171]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "5"
 
-[node name="10" type="Button" parent="Controls/BetAmounts"]
+[node name="10" type="Button" parent="Controls/BetAmounts" unique_id=594238292]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "10"
 
-[node name="25" type="Button" parent="Controls/BetAmounts"]
+[node name="25" type="Button" parent="Controls/BetAmounts" unique_id=141085110]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "25"
 
-[node name="50" type="Button" parent="Controls/BetAmounts"]
+[node name="50" type="Button" parent="Controls/BetAmounts" unique_id=1750502187]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "50"
 
-[node name="KeepBet" type="CheckBox" parent="Controls"]
+[node name="Clear" type="Button" parent="Controls" unique_id=914105549]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CLEAR"
+
+[node name="KeepBet" type="CheckBox" parent="Controls" unique_id=1369896929]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "keep this bet and auto start the next round"
@@ -203,14 +186,14 @@ text = "keep bet"
 alignment = 1
 icon_alignment = 1
 
-[node name="Bet" type="Label" parent="Controls"]
+[node name="Bet" type="Label" parent="Controls" unique_id=1387668437]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 text = "999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerLabel" type="Label" parent="."]
+[node name="PlayerLabel" type="Label" parent="." unique_id=466286272]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -229,7 +212,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DealButton" type="Button" parent="."]
+[node name="DealButton" type="Button" parent="." unique_id=270919630]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -245,7 +228,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "READY"
 
-[node name="DealerLabel" type="Label" parent="."]
+[node name="DealerLabel" type="Label" parent="." unique_id=487270060]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -264,7 +247,7 @@ text = "??"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BankRollLabel" type="Label" parent="."]
+[node name="BankRollLabel" type="Label" parent="." unique_id=1352791811]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -279,7 +262,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Bank Roll"
 
-[node name="BankRoll" type="Label" parent="."]
+[node name="BankRoll" type="Label" parent="." unique_id=261625118]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -294,30 +277,30 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "999"
 
-[node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="GameStateMachine" type="Node" parent="." unique_id=208445753 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_4c57u")
 initial_state = NodePath("Preround")
 
-[node name="Preround" type="Node" parent="GameStateMachine"]
+[node name="Preround" type="Node" parent="GameStateMachine" unique_id=1061263252]
 script = ExtResource("8_ycdy4")
 
-[node name="Dealing" type="Node" parent="GameStateMachine"]
+[node name="Dealing" type="Node" parent="GameStateMachine" unique_id=1438653318]
 script = ExtResource("7_efxa6")
 state = 1
 
-[node name="Active" type="Node" parent="GameStateMachine"]
+[node name="Active" type="Node" parent="GameStateMachine" unique_id=1749311538]
 script = ExtResource("8_dg77c")
 state = 2
 
-[node name="DealerTurn" type="Node" parent="GameStateMachine"]
+[node name="DealerTurn" type="Node" parent="GameStateMachine" unique_id=1871294248]
 script = ExtResource("10_w48qg")
 state = 3
 
-[node name="EndHand" type="Node" parent="GameStateMachine"]
+[node name="EndHand" type="Node" parent="GameStateMachine" unique_id=1837661466]
 script = ExtResource("9_ycdy4")
 state = 4
 
-[node name="Notification" parent="." instance=ExtResource("13_ycdy4")]
+[node name="Notification" parent="." unique_id=176857413 instance=ExtResource("13_ycdy4")]
 debug = true
 
 [connection signal="pressed" from="Controls/PlayerControls/Hit" to="." method="_on_hit_pressed"]
